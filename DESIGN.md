@@ -158,11 +158,6 @@ components:
     textColor: "{colors.primaryForeground}"
     rounded: "{rounded.pill}"
     padding: "{spacing.sm}"
-  page-view-counter:
-    backgroundColor: "{colors.background}"
-    textColor: "{colors.mutedForeground}"
-    rounded: "{rounded.sm}"
-    padding: "{spacing.xs}"
   destructive-button:
     backgroundColor: "{colors.destructive}"
     textColor: "{colors.primaryForeground}"

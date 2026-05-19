@@ -17,7 +17,7 @@ services, Cloudflare, or production credentials.
 - MDX content collections.
 - Pagefind search generated at build time.
 - `astro-icon` with the configured Lucide icon allowlist.
-- Optional Cloudflare Workers Static Assets and D1 page views.
+- Optional Cloudflare Workers Static Assets deployment.
 - Vitest for unit tests.
 
 ## Required Commands
@@ -39,7 +39,7 @@ Use Node.js 24 or newer and pnpm 11. Do not add npm, yarn, or bun lockfiles.
 - `src/pages/`: Astro routes, localized pages, RSS, robots, llms endpoints.
 - `src/layouts/main.astro`: shared HTML shell, SEO, header/footer layout.
 - `src/components/`: UI components grouped by cards, layout, navigation,
-  search, islands, icons, and analytics.
+  search, islands, and icons.
 - `src/content/`: authors, pages, and posts.
 - `src/content.config.ts`: content collection schemas.
 - `src/config/`: site, locale, taxonomy, pagination, and asset configuration.
@@ -47,22 +47,15 @@ Use Node.js 24 or newer and pnpm 11. Do not add npm, yarn, or bun lockfiles.
 - `src/styles/global.css`: live Tailwind v4 runtime theme and component CSS.
 - `src/styles/design-theme.css`: generated Tailwind v4 `@theme` export from
   `DESIGN.md`; do not edit by hand.
-- `src/worker.ts`: optional Cloudflare Worker API.
-- `migrations/`: optional Cloudflare D1 migrations.
-- `tests/`: unit tests for Worker logic and utilities.
+- `tests/`: unit tests for utilities.
 - `DESIGN.md`: visual design source for tokens and UI appearance.
 
 ## Architecture Rules
 
 - Keep the primary site static-first. A plain `pnpm build` must produce a usable
   static site in `dist`.
-- Do not make Cloudflare mandatory. `/api/*`, Worker code, and D1 bindings are
-  optional deployment features.
-- The page-view counter is disabled unless `PUBLIC_PAGE_VIEWS_ENABLED=true` is
-  set at build time and in the Worker runtime.
-- Do not collect IP addresses, User-Agent, referrer, cookies, or personal
-  identifiers for page views.
-- Non-API Worker requests must delegate to `env.ASSETS.fetch(request)`.
+- Do not make Cloudflare mandatory. The Cloudflare path is static assets
+  deployment only; do not add database-backed features by default.
 - Preserve Astro `trailingSlash: "always"` behavior and locale-prefixed routes.
 - Preserve RTL support for Arabic routes.
 - Keep configuration in `src/config/*`; do not scatter site-wide constants
@@ -98,13 +91,12 @@ Use Node.js 24 or newer and pnpm 11. Do not add npm, yarn, or bun lockfiles.
 
 ## Testing Rules
 
-- Run `pnpm test` after changing `src/worker.ts`, utilities, generated-count
-  logic, path normalization, analytics behavior, or test-covered helpers.
+- Run `pnpm test` after changing utilities, generated-count logic,
+  pagination, or test-covered helpers.
 - Run `pnpm build` after changing routes, layouts, components, styles, content
   schemas, Astro config, i18n, or design-generated CSS.
 - Run `pnpm exec wrangler deploy --dry-run` after changing `wrangler.jsonc`,
-  Worker code, Worker bindings, static asset routing, or Cloudflare deployment
-  behavior.
+  static asset routing, or Cloudflare deployment behavior.
 - Do not report completion until the relevant commands have been run and their
   output has been checked.
 

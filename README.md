@@ -118,65 +118,14 @@ pnpm build
 ```
 
 Polyglow can be published to any static host, including Cloudflare Pages, Vercel,
-Netlify, GitHub Pages, or a plain web server. Page views are disabled by default,
-so non-Cloudflare platforms do not need any database or serverless function.
+Netlify, GitHub Pages, or a plain web server. It does not require a database or
+serverless function.
 
 Polyglow also includes an optional Cloudflare Workers deployment path:
 
 ```bash
 pnpm deploy
 ```
-
-### Optional Page Views
-
-The page view counter is an optional Cloudflare D1 feature. It is disabled unless
-`PUBLIC_PAGE_VIEWS_ENABLED=true` is set at build time and in the Worker runtime.
-
-When disabled:
-
-- No page view UI is rendered.
-- No browser request is made to `/api/page-view`.
-- Static hosts such as Vercel, Netlify, GitHub Pages, and plain CDN hosting work
-  without extra configuration.
-
-To enable page views on Cloudflare Workers:
-
-1. Create a D1 database.
-
-   ```bash
-   pnpm exec wrangler d1 create polyglow_analytics
-   ```
-
-2. Add the runtime variable and D1 binding to `wrangler.jsonc`.
-
-   ```jsonc
-   "vars": {
-     "PUBLIC_PAGE_VIEWS_ENABLED": "true"
-   },
-   "d1_databases": [
-     {
-       "binding": "ANALYTICS_DB",
-       "database_name": "polyglow_analytics",
-       "database_id": "<database_id>",
-       "migrations_dir": "./migrations"
-     }
-   ]
-   ```
-
-3. Apply the migration.
-
-   ```bash
-   pnpm exec wrangler d1 migrations apply polyglow_analytics --remote
-   ```
-
-4. Build and deploy with page views enabled.
-
-   ```bash
-   PUBLIC_PAGE_VIEWS_ENABLED=true pnpm deploy
-   ```
-
-This feature only stores page path, count, and update time. It does not collect
-IP addresses, user agents, referrers, cookies, or personal identifiers.
 
 ## Feedback
 
