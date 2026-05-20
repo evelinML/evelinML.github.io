@@ -6,6 +6,7 @@ import { optimizeRemoteImageUrl } from "@/config/assets"
 import { LOCALES, getLocaleMeta, type Locale } from "@/config/locales"
 import { SITE_CONFIG } from "@/config/site"
 import { buildAlternates, canonicalUrl } from "@/utils/routes"
+import { t } from "@/utils/translations"
 import { webPageJsonLd, webSiteJsonLd } from "@/utils/structured-data"
 import Header from "@/components/ui/Header.astro"
 import Footer from "@/components/ui/Footer.astro"
@@ -29,7 +30,7 @@ const {
   lang,
   path = "/",
   title = SITE_CONFIG.name,
-  description = SITE_CONFIG.description,
+  description,
   image = SITE_CONFIG.defaultOgImage,
   ogType = "website",
   noindex = false,
@@ -37,6 +38,7 @@ const {
 } = Astro.props
 const localeMeta = getLocaleMeta(lang)
 const alternates = buildAlternates(path)
+const pageDescription = description ?? t(lang, "site.description")
 const pageTitle =
   title === SITE_CONFIG.name ? title : `${title} | ${SITE_CONFIG.name}`
 const canonical = canonicalUrl(lang, path)
@@ -49,26 +51,33 @@ const preloadImage = isUnsplashImage
   : undefined
 const baseJsonLd = [
   webSiteJsonLd(lang),
-  webPageJsonLd({ lang, path, title: pageTitle, description, image }),
+  webPageJsonLd({
+    lang,
+    path,
+    title: pageTitle,
+    description: pageDescription,
+    image,
+  }),
 ]
 const jsonLdItems = jsonLd
   ? baseJsonLd.concat(Array.isArray(jsonLd) ? jsonLd : [jsonLd])
   : baseJsonLd
-const languageAlternates = Object.entries(alternates).map(
-  ([hrefLang, href]) => ({
-    hrefLang,
-    href,
-  })
-)
+const languageAlternates = noindex
+  ? undefined
+  : Object.entries(alternates).map(([hrefLang, href]) => ({
+      hrefLang,
+      href,
+    }))
 const alternateOgLocales = LOCALES.filter((locale) => locale !== lang).map(
   (locale) => getLocaleMeta(locale).ogLocale
 )
 ---
 
-<html lang={lang} dir={localeMeta.dir}>
+<html lang={localeMeta.hreflang} dir={localeMeta.dir}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-language" content={localeMeta.hreflang} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     {
       isUnsplashImage && (
@@ -91,7 +100,7 @@ const alternateOgLocales = LOCALES.filter((locale) => locale !== lang).map(
     }
     <SEO
       title={pageTitle}
-      description={description}
+      description={pageDescription}
       canonical={canonical}
       noindex={noindex}
       languageAlternates={languageAlternates}
@@ -103,7 +112,7 @@ const alternateOgLocales = LOCALES.filter((locale) => locale !== lang).map(
           url: canonical,
         },
         optional: {
-          description,
+          description: pageDescription,
           locale: localeMeta.ogLocale,
           localeAlternate: alternateOgLocales,
           siteName: SITE_CONFIG.name,
@@ -115,7 +124,7 @@ const alternateOgLocales = LOCALES.filter((locale) => locale !== lang).map(
       twitter={{
         card: "summary_large_image",
         title: pageTitle,
-        description,
+        description: pageDescription,
         image: absoluteImage,
         imageAlt: pageTitle,
       }}

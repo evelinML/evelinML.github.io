@@ -15,7 +15,7 @@ const title = t(lang, "search.title")
 const subtitle = t(lang, "search.subtitle")
 ---
 
-<Layout lang={lang} path="/search/" title={title} description={subtitle}>
+<Layout lang={lang} path="/search/" title={title} description={subtitle} noindex>
   <PageSection>
     <PageHeader title={title} subtitle={subtitle} class="search-header" />
     <PagefindSearch lang={lang} class="mx-auto max-w-2xl" />

@@ -18,6 +18,19 @@ const assetHost = (() => {
 })()
 
 const googleTagManagerEnabled = process.env.PUBLIC_GTM_ENABLED === "true"
+const sitemapLocaleMap = {
+  zh: "zh-CN",
+  en: "en-US",
+  fr: "fr-FR",
+  es: "es-ES",
+  ru: "ru-RU",
+  ja: "ja-JP",
+  ko: "ko-KR",
+  pt: "pt-PT",
+  de: "de-DE",
+  id: "id-ID",
+  ar: "ar",
+}
 
 export default defineConfig({
   output: "static",
@@ -87,21 +100,23 @@ export default defineConfig({
       themeCssSelector: (theme) => (theme.type === "dark" ? ".dark" : ""),
     }),
     sitemap({
+      filter: (page) => {
+        const { pathname } = new URL(page)
+        return pathname !== "/" && !pathname.endsWith("/search/")
+      },
       i18n: {
         defaultLocale: "en",
-        locales: {
-          zh: "zh-CN",
-          en: "en-US",
-          fr: "fr-FR",
-          es: "es-ES",
-          ru: "ru-RU",
-          ja: "ja-JP",
-          ko: "ko-KR",
-          pt: "pt-PT",
-          de: "de-DE",
-          id: "id-ID",
-          ar: "ar",
-        },
+        locales: sitemapLocaleMap,
+      },
+      serialize: (item) => {
+        if (!item.links?.length) return item
+        const links = new Map(item.links.map((link) => [link.lang, link.url]))
+        const defaultUrl = links.get(sitemapLocaleMap.en)
+        if (defaultUrl) links.set("x-default", defaultUrl)
+        return {
+          ...item,
+          links: [...links].map(([lang, url]) => ({ lang, url })),
+        }
       },
     }),
     mdx(),

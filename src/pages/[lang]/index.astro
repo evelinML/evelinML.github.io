@@ -36,7 +36,7 @@ const archivePosts = posts.slice(0, POSTS_PER_PAGE)
   lang={lang}
   path="/"
   title="Polyglow"
-  description={lead?.data.description}
+  description={t(lang, "site.description")}
   image={lead?.data.heroImage}
 >
   {

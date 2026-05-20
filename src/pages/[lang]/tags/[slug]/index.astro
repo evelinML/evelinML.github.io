@@ -3,22 +3,29 @@ import Layout from "@/layouts/main.astro"
 import PageHeader from "@/components/layout/PageHeader.astro"
 import PageSection from "@/components/layout/PageSection.astro"
 import PostCardGrid from "@/components/lists/PostCardGrid.astro"
-import EmptyState from "@/components/ui/EmptyState.astro"
 import Pagination from "@/components/navigation/Pagination.astro"
 import { LOCALES, type Locale } from "@/config/locales"
 import { TAXONOMY_POSTS_PER_PAGE } from "@/config/pagination"
 import { TAXONOMY, getTag } from "@/config/taxonomy"
 import { getPaginationLinks, getTotalPages } from "@/utils/pagination"
 import { getPostsByTag } from "@/utils/posts"
-import { t } from "@/utils/translations"
 
 export async function getStaticPaths() {
-  return LOCALES.flatMap((lang) =>
-    TAXONOMY.tags.map((tag) => ({
-      params: { lang, slug: tag.slug },
-      props: { lang, slug: tag.slug },
-    }))
-  )
+  const paths = []
+
+  for (const lang of LOCALES) {
+    for (const tag of TAXONOMY.tags) {
+      const posts = await getPostsByTag(lang, tag.slug)
+      if (posts.length > 0) {
+        paths.push({
+          params: { lang, slug: tag.slug },
+          props: { lang, slug: tag.slug },
+        })
+      }
+    }
+  }
+
+  return paths
 }
 
 const { lang, slug } = Astro.props as { lang: Locale; slug: string }
@@ -38,27 +45,22 @@ const pagination = getPaginationLinks({
   lang={lang}
   path={`/tags/${slug}/`}
   title={tag?.labelByLocale[lang] ?? slug}
+  description={tag?.descriptionByLocale[lang]}
 >
   <PageSection>
     <PageHeader
       title={tag?.labelByLocale[lang] ?? slug}
       subtitle={tag?.descriptionByLocale[lang]}
     />
+    <PostCardGrid posts={pagePosts} />
     {
-      posts.length > 0 ? (
-        <>
-          <PostCardGrid posts={pagePosts} />
-          {totalPages > 1 && (
-            <Pagination
-              next={pagination.next}
-              last={pagination.last}
-              currentPage={1}
-              totalPages={totalPages}
-            />
-          )}
-        </>
-      ) : (
-        <EmptyState message={t(lang, "pages.tags.noPosts")} />
+      totalPages > 1 && (
+        <Pagination
+          next={pagination.next}
+          last={pagination.last}
+          currentPage={1}
+          totalPages={totalPages}
+        />
       )
     }
   </PageSection>
