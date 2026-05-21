@@ -103,7 +103,12 @@ const archivePosts = posts.slice(0, POSTS_PER_PAGE)
           ))}
         </div>
         {gridPosts.length > 0 && (
-          <PostCardGrid posts={gridPosts} headingLevel={3} class="mt-6" />
+          <PostCardGrid
+            posts={gridPosts}
+            balanceLastRow
+            headingLevel={3}
+            class="mt-6"
+          />
         )}
         {totalPages > 1 && (
           <Pagination

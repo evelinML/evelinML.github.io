@@ -4,7 +4,7 @@ import partytown from "@astrojs/partytown"
 import sitemap from "@astrojs/sitemap"
 import tailwindcss from "@tailwindcss/vite"
 import pagefind from "astro-pagefind"
-import { defineConfig } from "astro/config"
+import { defineConfig, svgoOptimizer } from "astro/config"
 import icon from "astro-icon"
 
 const assetHost = (() => {
@@ -17,7 +17,9 @@ const assetHost = (() => {
   }
 })()
 
-const googleTagManagerEnabled = process.env.PUBLIC_GTM_ENABLED === "true"
+const googleTagManagerEnabled =
+  process.env.PUBLIC_GTM_ENABLED === "true" &&
+  /^GTM-[A-Z0-9]+$/i.test(process.env.PUBLIC_GTM_ID ?? "")
 const sitemapLocaleMap = {
   zh: "zh-CN",
   en: "en-US",
@@ -36,6 +38,10 @@ export default defineConfig({
   output: "static",
   site: process.env.PUBLIC_SITE_URL ?? "https://polyglow.realrip.com",
   trailingSlash: "always",
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: "hover",
+  },
   build: {
     concurrency: 6,
   },
@@ -65,6 +71,23 @@ export default defineConfig({
         png: { compressionLevel: 9 },
       },
     },
+  },
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: "github-light",
+        dark: "github-dark",
+      },
+      defaultColor: false,
+      wrap: true,
+    },
+  },
+  experimental: {
+    svgOptimizer: svgoOptimizer({
+      multipass: true,
+      floatPrecision: 2,
+      plugins: ["preset-default"],
+    }),
   },
   integrations: [
     ...(googleTagManagerEnabled

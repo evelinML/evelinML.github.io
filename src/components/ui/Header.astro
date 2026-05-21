@@ -4,6 +4,7 @@ import type { Locale } from "@/config/locales"
 import { getPrimaryCategories, getTagsForCategory } from "@/config/taxonomy"
 import { SITE_CONFIG } from "@/config/site"
 import { localePath } from "@/utils/routes"
+import { t } from "@/utils/translations"
 import Icon from "@/components/icons/Icon.astro"
 import MobileNav from "@/components/islands/MobileNav.astro"
 import LanguageSwitcher from "@/components/islands/LanguageSwitcher.astro"
@@ -73,6 +74,9 @@ const primaryCategories = getPrimaryCategories()
           </div>
         ))
       }
+      <a class="nav-link font-medium" href={localePath(lang, "/posts/")}>
+        {t(lang, "pages.posts.title")}
+      </a>
     </nav>
     <div
       class="col-start-2 flex items-center gap-1 justify-self-end sm:gap-2 lg:col-start-3"
