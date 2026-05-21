@@ -35,6 +35,10 @@ const x402Description = normalizePublicString(
 const x402FacilitatorUrl = normalizePublicString(
   import.meta.env.PUBLIC_X402_FACILITATOR_URL
 )
+const socialXUrl = "https://x.com/realriplabs"
+const socialXHandle = `@${
+  new URL(socialXUrl).pathname.split("/").filter(Boolean)[0] ?? "realriplabs"
+}`
 
 export const SITE_CONFIG = {
   name: "Polyglow",
@@ -45,7 +49,8 @@ export const SITE_CONFIG = {
     "A multilingual Astro content site with glassmorphism cards and static publishing.",
   repository: "https://github.com/realriplab/Polyglow",
   social: {
-    x: "https://x.com/realriplabs",
+    x: socialXUrl,
+    xHandle: socialXHandle,
   },
   defaultOgImage: "/open-graph.webp",
   homepage: {

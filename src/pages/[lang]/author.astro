@@ -27,6 +27,8 @@ const publicationYears = [
   ...new Set(authorPosts.map((post) => post.data.pubDate.getFullYear())),
 ].sort((a, b) => b - a)
 const activeYear = publicationYears[0] ?? new Date().getFullYear()
+const previousYearsLabel = `${writingActivityLabel}: ${t(lang, "common.previous")}`
+const nextYearsLabel = `${writingActivityLabel}: ${t(lang, "common.next")}`
 const monthFormatter = new Intl.DateTimeFormat(lang, { month: "short" })
 const dateFormatter = new Intl.DateTimeFormat(lang, {
   month: "short",
@@ -119,7 +121,7 @@ const recentPublishedPosts = authorPosts.slice(0, 6)
                 href={social.url}
                 aria-label={social.label}
                 target={social.url.startsWith("http") ? "_blank" : undefined}
-                rel={social.url.startsWith("http") ? "noreferrer" : undefined}
+                rel={social.url.startsWith("http") ? "noopener noreferrer" : undefined}
               >
                 {social.label === "GitHub" ? (
                   <Icon name="github" class="size-5" dataIcon="inline-start" />
@@ -148,23 +150,48 @@ const recentPublishedPosts = authorPosts.slice(0, 6)
         <h2 class="text-2xl font-semibold text-foreground">
           {writingActivityLabel}
         </h2>
-        <div class="flex flex-wrap gap-3 sm:grid">
-          {
-            (publicationYears.length > 0
-              ? publicationYears.slice(0, 3)
-              : [activeYear]
-            ).map((year, index) => (
-              <span
-                class={`inline-flex h-10 items-center justify-center rounded-full px-6 text-sm font-semibold ${
-                  index === 0
-                    ? "bg-foreground text-background"
-                    : "border border-border text-muted-foreground"
-                }`}
-              >
-                {year}
-              </span>
-            ))
-          }
+        <div
+          class="flex min-w-0 items-center gap-2 sm:max-w-[min(100%,28rem)]"
+          data-activity-year-nav
+          dir="ltr"
+        >
+          <button
+            type="button"
+            class="hidden size-10 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground transition hover:bg-accent hover:text-foreground disabled:pointer-events-none disabled:opacity-35 dark:bg-white/[0.03]"
+            aria-label={previousYearsLabel}
+            data-activity-year-scroll="left"
+          >
+            <Icon name="chevron-left" class="size-4" />
+          </button>
+          <div
+            class="flex min-w-0 flex-1 snap-x gap-3 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            data-activity-year-list
+          >
+            {
+              (publicationYears.length > 0
+                ? publicationYears
+                : [activeYear]
+              ).map((year, index) => (
+                <span
+                  class={`inline-flex h-10 shrink-0 snap-start items-center justify-center rounded-full px-6 text-sm font-semibold ${
+                    index === 0
+                      ? "bg-foreground text-background"
+                      : "border border-border text-muted-foreground"
+                  }`}
+                >
+                  {year}
+                </span>
+              ))
+            }
+          </div>
+          <button
+            type="button"
+            class="hidden size-10 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground transition hover:bg-accent hover:text-foreground disabled:pointer-events-none disabled:opacity-35 dark:bg-white/[0.03]"
+            aria-label={nextYearsLabel}
+            data-activity-year-scroll="right"
+          >
+            <Icon name="chevron-right" class="size-4" />
+          </button>
         </div>
       </div>
       <div class="mt-7 overflow-x-auto pb-2">
@@ -237,3 +264,51 @@ const recentPublishedPosts = authorPosts.slice(0, 6)
     </section>
   </PageSection>
 </Layout>
+
+<script is:inline>
+  ;(() => {
+    const setupYearNav = () => {
+      document.querySelectorAll("[data-activity-year-nav]").forEach((nav) => {
+        if (!(nav instanceof HTMLElement)) return
+        if (nav.dataset.activityYearReady === "true") return
+        nav.dataset.activityYearReady = "true"
+        const list = nav.querySelector("[data-activity-year-list]")
+        const prev = nav.querySelector('[data-activity-year-scroll="left"]')
+        const next = nav.querySelector('[data-activity-year-scroll="right"]')
+        if (
+          !(list instanceof HTMLElement) ||
+          !(prev instanceof HTMLButtonElement) ||
+          !(next instanceof HTMLButtonElement)
+        ) {
+          return
+        }
+
+        const update = () => {
+          const overflows = list.scrollWidth > list.clientWidth + 1
+          prev.classList.toggle("hidden", !overflows)
+          prev.classList.toggle("inline-flex", overflows)
+          next.classList.toggle("hidden", !overflows)
+          next.classList.toggle("inline-flex", overflows)
+          if (!overflows) return
+
+          const maxScroll = list.scrollWidth - list.clientWidth
+          prev.disabled = list.scrollLeft <= 1
+          next.disabled = list.scrollLeft >= maxScroll - 1
+        }
+
+        prev.addEventListener("click", () => {
+          list.scrollBy({ left: -list.clientWidth * 0.75, behavior: "smooth" })
+        })
+        next.addEventListener("click", () => {
+          list.scrollBy({ left: list.clientWidth * 0.75, behavior: "smooth" })
+        })
+        list.addEventListener("scroll", update, { passive: true })
+        window.addEventListener("resize", update)
+        update()
+      })
+    }
+
+    setupYearNav()
+    document.addEventListener("astro:page-load", setupYearNav)
+  })()
+</script>

@@ -187,7 +187,11 @@ const jsonLd = articleJsonLd({
             <h2 id="related-posts" class="sr-only">
               {t(post.data.locale, "post.relatedPosts")}
             </h2>
-            <PostCardGrid posts={relatedPosts} columns="three" />
+            <PostCardGrid
+              posts={relatedPosts}
+              columns="three"
+              headingLevel={3}
+            />
           </section>
         )
       }

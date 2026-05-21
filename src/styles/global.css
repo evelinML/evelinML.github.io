@@ -170,7 +170,11 @@
   box-shadow: var(--glass-shadow-hover);
 }
 
-.header-glass,
+.header-glass {
+  background: var(--background);
+  border-color: var(--border);
+}
+
 .nav-dropdown,
 .mobile-nav-glass {
   background: var(--glass-content-bg);
@@ -180,7 +184,6 @@
   -webkit-backdrop-filter: blur(var(--glass-blur-lg));
 }
 
-:root:not(.dark) .header-glass,
 :root:not(.dark) .nav-dropdown,
 :root:not(.dark) .mobile-nav-glass {
   background: rgba(255, 255, 255, 0.86);

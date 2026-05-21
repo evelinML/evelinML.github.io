@@ -81,6 +81,8 @@ export default defineConfig({
         lucide: [
           "arrow-left",
           "chevron-down",
+          "chevron-left",
+          "chevron-right",
           "eye",
           "github",
           "globe",

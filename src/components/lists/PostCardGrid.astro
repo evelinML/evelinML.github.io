@@ -5,6 +5,7 @@ import type { PostEntry } from "@/utils/posts"
 interface Props {
   posts: PostEntry[]
   columns?: "responsive" | "three"
+  headingLevel?: 2 | 3
   class?: string
   [key: string]: unknown
 }
@@ -12,6 +13,7 @@ interface Props {
 const {
   posts,
   columns = "responsive",
+  headingLevel = 2,
   class: className = "",
   ...attrs
 } = Astro.props
@@ -28,7 +30,12 @@ const cardClass =
 <div class={`${gridClass} ${className}`} {...attrs}>
   {
     posts.map((post) => (
-      <PostCardCover post={post} variant="portrait" class={cardClass} />
+      <PostCardCover
+        post={post}
+        variant="portrait"
+        headingLevel={headingLevel}
+        class={cardClass}
+      />
     ))
   }
 </div>
