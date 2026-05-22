@@ -16,7 +16,7 @@ describe("route helpers", () => {
   it("includes x-default in alternate links", () => {
     const alternates = buildAlternates("/posts/")
 
-    expect(alternates["zh-CN"]).toBe("https://realrip.com/zh/posts/")
-    expect(alternates["x-default"]).toBe("https://realrip.com/zh/posts/")
+    expect(alternates["zh-CN"]).toBe("https://example.com/zh/posts/")
+    expect(alternates["x-default"]).toBe("https://example.com/zh/posts/")
   })
 })

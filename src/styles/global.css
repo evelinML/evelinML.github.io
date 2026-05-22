@@ -249,15 +249,15 @@
   @apply inline-flex items-center rounded-full bg-white/25 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md;
 }
 
-.realrip-prose {
+.polyglow-prose {
   @apply max-w-3xl text-foreground;
 }
 
-.realrip-prose.article-prose {
+.polyglow-prose.article-prose {
   @apply max-w-none;
 }
 
-.realrip-prose.prose-neutral {
+.polyglow-prose.prose-neutral {
   color: var(--foreground);
 }
 
@@ -281,18 +281,18 @@
 
 @supports (text-autospace: normal) {
   :where(html[lang="zh"], html[lang="ja"], html[lang="ko"]),
-  :where(html[lang="zh"], html[lang="ja"], html[lang="ko"]) .realrip-prose {
+  :where(html[lang="zh"], html[lang="ja"], html[lang="ko"]) .polyglow-prose {
     text-autospace: normal;
   }
 }
 
-:where(html[lang="zh"], html[lang="ja"], html[lang="ko"]) .realrip-prose {
+:where(html[lang="zh"], html[lang="ja"], html[lang="ko"]) .polyglow-prose {
   text-align: justify;
   text-justify: inter-ideograph;
 }
 
 :where(html[lang="zh"], html[lang="ja"], html[lang="ko"])
-  .realrip-prose
+  .polyglow-prose
   :where(p, li) {
   text-align: justify;
   text-justify: inter-ideograph;
@@ -307,7 +307,7 @@
     html[lang="de"],
     html[lang="id"]
   )
-  .realrip-prose,
+  .polyglow-prose,
 :where(
     html[lang="en"],
     html[lang="fr"],
@@ -317,13 +317,13 @@
     html[lang="de"],
     html[lang="id"]
   )
-  .realrip-prose
+  .polyglow-prose
   :where(p, li) {
   text-align: left;
 }
 
-html[dir="rtl"] .realrip-prose,
-html[dir="rtl"] .realrip-prose :where(p, li) {
+html[dir="rtl"] .polyglow-prose,
+html[dir="rtl"] .polyglow-prose :where(p, li) {
   text-align: start;
 }
 
@@ -340,75 +340,75 @@ html[dir="rtl"] .realrip-prose :where(p, li) {
   @apply w-full;
 }
 
-.realrip-prose :where(h2) {
+.polyglow-prose :where(h2) {
   @apply mt-12 mb-4 text-2xl leading-tight font-semibold text-foreground;
 }
 
-.realrip-prose :where(h3) {
+.polyglow-prose :where(h3) {
   @apply mt-9 mb-3 text-xl leading-tight font-semibold text-foreground;
 }
 
-.realrip-prose :where(h4) {
+.polyglow-prose :where(h4) {
   @apply mt-8 mb-2 text-lg leading-tight font-semibold text-foreground;
 }
 
-.realrip-prose :where(p) {
+.polyglow-prose :where(p) {
   @apply my-6 leading-8 text-foreground/85;
 }
 
-.realrip-prose :where(ul, ol) {
+.polyglow-prose :where(ul, ol) {
   @apply my-6 ps-6;
 }
 
-.realrip-prose :where(li) {
+.polyglow-prose :where(li) {
   @apply my-2 leading-8 text-foreground/85;
 }
 
-.realrip-prose :where(li)::marker {
+.polyglow-prose :where(li)::marker {
   color: var(--muted-foreground);
 }
 
-.realrip-prose :where(strong) {
+.polyglow-prose :where(strong) {
   @apply font-semibold text-foreground;
 }
 
-.realrip-prose :where(a) {
+.polyglow-prose :where(a) {
   @apply font-medium text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground;
 }
 
-.realrip-prose :where(:not(pre) > code) {
+.polyglow-prose :where(:not(pre) > code) {
   @apply rounded-md bg-muted px-1.5 py-0.5 text-sm text-foreground;
 }
 
-.realrip-prose :where(pre) {
+.polyglow-prose :where(pre) {
   @apply my-8 overflow-x-auto rounded-2xl border border-border bg-muted/70 p-4 shadow-sm;
 }
 
-.realrip-prose :where(pre code) {
+.polyglow-prose :where(pre code) {
   @apply bg-transparent p-0 text-sm text-foreground;
 }
 
-.realrip-prose :where(blockquote) {
+.polyglow-prose :where(blockquote) {
   @apply my-8 rounded-2xl border-s-4 border-border bg-muted/50 px-5 py-3 text-foreground/80;
 }
 
-.realrip-prose :where(hr) {
+.polyglow-prose :where(hr) {
   @apply my-10 border-border;
 }
 
-.realrip-prose :where(table) {
+.polyglow-prose :where(table) {
   @apply my-8 text-sm;
 }
 
-.realrip-prose :where(th) {
+.polyglow-prose :where(th) {
   @apply border-b border-border px-3 py-2 text-start font-semibold text-foreground;
 }
 
-.realrip-prose :where(td) {
+.polyglow-prose :where(td) {
   @apply border-b border-border px-3 py-2 text-foreground/80;
 }
 
-.realrip-prose :where(img) {
+.polyglow-prose :where(img) {
   @apply my-8 rounded-2xl shadow-sm ring-1 ring-border;
 }
 

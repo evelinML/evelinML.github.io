@@ -53,15 +53,15 @@ const x402ChargeMode = normalizeX402ChargeMode(
 const x402BotScoreThreshold = normalizeBotScoreThreshold(
   import.meta.env.PUBLIC_X402_BOT_SCORE_THRESHOLD
 )
-const socialXUrl = "https://x.com/realriplab"
+const socialXUrl = "https://x.com/polyglow"
 const socialXHandle = `@${
-  new URL(socialXUrl).pathname.split("/").filter(Boolean)[0] ?? "realriplab"
+  new URL(socialXUrl).pathname.split("/").filter(Boolean)[0] ?? "polyglow"
 }`
 
 export const SITE_CONFIG = {
   name: "Polyglow",
   url: (
-    import.meta.env.PUBLIC_SITE_URL ?? "https://realrip.com"
+    import.meta.env.PUBLIC_SITE_URL ?? "https://example.com"
   ).replace(/\/$/, ""),
   description: "在创业的波涛，投资的迷雾和生活的海洋中奋力前行",
   repository: "https://github.com/realriplab/Polyglow",

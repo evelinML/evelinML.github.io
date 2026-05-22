@@ -36,7 +36,7 @@ const sitemapLocaleMap = {
 
 export default defineConfig({
   output: "static",
-  site: process.env.PUBLIC_SITE_URL ?? "https://realrip.com",
+  site: process.env.PUBLIC_SITE_URL ?? "https://example.com",
   trailingSlash: "always",
   prefetch: {
     prefetchAll: true,
@@ -61,7 +61,6 @@ export default defineConfig({
     layout: "constrained",
     remotePatterns: [
       ...(assetHost ? [{ protocol: "https", hostname: assetHost }] : []),
-      { protocol: "https", hostname: "cos.realrip.com" },
       { protocol: "https", hostname: "*.unsplash.com" },
     ],
     service: {

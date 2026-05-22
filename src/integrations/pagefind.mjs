@@ -30,7 +30,7 @@ export default function pagefind({ indexConfig } = {}) {
   let clientDir
 
   return {
-    name: "realrip-pagefind",
+    name: "polyglow-pagefind",
     hooks: {
       "astro:config:setup": ({ config, logger }) => {
         if (config.output === "server") {

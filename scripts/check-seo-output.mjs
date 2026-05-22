@@ -2,7 +2,7 @@ import { existsSync, readdirSync, readFileSync, statSync } from "node:fs"
 import { join, relative, sep } from "node:path"
 
 const distDir = join(process.cwd(), "dist")
-const siteUrl = (process.env.PUBLIC_SITE_URL ?? "https://realrip.com").replace(
+const siteUrl = (process.env.PUBLIC_SITE_URL ?? "https://example.com").replace(
   /\/$/,
   ""
 )
