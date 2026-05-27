@@ -38,7 +38,7 @@ const archivePosts = posts.slice(0, POSTS_PER_PAGE)
   title={t(lang, "site.name")}
   description={t(lang, "site.description")}
   image={lead?.data.heroImage}
-  dynamicGlass={homepageLayout === "cover"}
+  dynamicGlass
 >
   {
     homepageLayout === "archive" ? (
@@ -99,7 +99,7 @@ const archivePosts = posts.slice(0, POSTS_PER_PAGE)
               post={post}
               priority
               variant="wide"
-              class="col-span-12 md:col-span-6"
+              class="col-span-12 sm:col-span-6"
             />
           ))}
         </div>

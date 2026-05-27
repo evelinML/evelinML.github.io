@@ -201,8 +201,8 @@ const jsonLd = articleJsonLd({
 
       {
         relatedPosts.length > 0 && (
-          <section
-            class="mx-auto mt-16 max-w-6xl"
+        <section
+            class="post-related-posts mx-auto mt-16 max-w-6xl"
             aria-labelledby="related-posts"
             data-pagefind-ignore
             data-related-posts
@@ -214,6 +214,7 @@ const jsonLd = articleJsonLd({
               posts={relatedPosts}
               columns="tablet-three"
               headingLevel={3}
+              class="post-card-grid"
             />
           </section>
         )
@@ -221,3 +222,14 @@ const jsonLd = articleJsonLd({
     </main>
   </article>
 </Layout>
+
+<style>
+  .post-related-posts :global(.post-card-grid .post-card__content) {
+    text-align: center;
+  }
+
+  .post-related-posts
+    :global(.post-card-grid .post-card__content > div:first-child) {
+    justify-content: center;
+  }
+</style>

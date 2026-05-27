@@ -247,7 +247,7 @@ const activityDataJson = JSON.stringify(activityByYear).replace(/</g, "\\u003c")
               displayYears.map((year, index) => (
                 <button
                   type="button"
-                  class={`inline-flex h-10 shrink-0 snap-start items-center justify-center rounded-full px-6 text-sm font-semibold transition hover:bg-accent hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring ${
+                  class={`inline-flex h-10 shrink-0 snap-start cursor-pointer items-center justify-center rounded-full px-6 text-sm font-semibold transition hover:bg-accent hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring ${
                     index === 0
                       ? "bg-foreground text-background"
                       : "border border-border text-muted-foreground"
@@ -575,10 +575,14 @@ const activityDataJson = JSON.stringify(activityByYear).replace(/</g, "\\u003c")
         next.addEventListener("click", () => {
           list.scrollBy({ left: list.clientWidth * 0.75, behavior: "smooth" })
         })
-        yearButtons.forEach((button) => {
-          button.addEventListener("click", () => {
-            setActiveYear(button.dataset.activityYear)
-          })
+        list.addEventListener("pointerdown", (event) => {
+          if (!(event.target instanceof Element)) return
+          const button = event.target.closest("[data-activity-year]")
+          if (!(button instanceof HTMLButtonElement)) return
+          const year = button.dataset.activityYear
+          if (!year) return
+          event.preventDefault()
+          setActiveYear(year)
         })
         list.addEventListener("scroll", update, { passive: true })
         window.addEventListener("resize", update)
