@@ -20,12 +20,6 @@
     "build": "astro check && astro build && node scripts/format-sitemaps.mjs",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "vitest run",
-    "typecheck": "astro check",
-    "images:check": "node scripts/check-content-images.mjs",
-    "seo:check": "node scripts/check-seo-output.mjs",
-    "design:lint": "pnpm dlx @google/design.md lint DESIGN.md",
-    "design:theme": "node scripts/export-design-theme.mjs",
     "check": "pnpm build",
     "deploy": "pnpm build && pnpm run deploy:worker",
     "deploy:worker": "node scripts/deploy-worker.mjs"
