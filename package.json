@@ -17,7 +17,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro check && astro build && node scripts/format-sitemaps.mjs",
+    "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "check": "pnpm build",
