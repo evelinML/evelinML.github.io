@@ -64,7 +64,7 @@ const socialXHandle = `@${
 export const SITE_CONFIG = {
   name: "Polyglow",
   url: (
-    import.meta.env.PUBLIC_SITE_URL ?? "https://example.com"
+    import.meta.env.PUBLIC_SITE_URL ?? "https://polyglow.realrip.com"
   ).replace(/\/$/, ""),
   description:
     "Pressing forward through the waves of startup, the fog of investing, and the ocean of life.",

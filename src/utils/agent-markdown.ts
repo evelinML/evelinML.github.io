@@ -40,7 +40,7 @@ export function renderLlmsTxt(posts: readonly PostEntry[]): string {
     "",
     `- [English RSS](${SITE_CONFIG.url}/en/rss.xml)`,
     `- [Chinese RSS](${SITE_CONFIG.url}/zh/rss.xml)`,
-    `- [Sitemap](${SITE_CONFIG.url}/sitemap.xml)`,
+    `- [Sitemap](${SITE_CONFIG.url}/sitemap-index.xml)`,
     `- [Robots](${SITE_CONFIG.url}/robots.txt)`,
     "",
     "## Recent posts",
@@ -94,7 +94,7 @@ export function renderLlmsFullTxt(posts: readonly PostEntry[]): string {
   }
 
   lines.push("## Optional")
-  lines.push("- [Sitemap](/sitemap.xml)")
+  lines.push("- [Sitemap](/sitemap-index.xml)")
 
   return lines.join("\n")
 }

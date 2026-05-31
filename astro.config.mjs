@@ -36,7 +36,7 @@ const sitemapLocaleMap = {
 
 export default defineConfig({
   output: "static",
-  site: process.env.PUBLIC_SITE_URL ?? "https://example.com",
+  site: process.env.PUBLIC_SITE_URL ?? "https://polyglow.realrip.com",
   trailingSlash: "always",
   prefetch: {
     prefetchAll: true,
