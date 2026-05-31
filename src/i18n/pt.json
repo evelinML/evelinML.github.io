@@ -17,7 +17,7 @@
     "toggle": "Alternar tema",
     "light": "Claro",
     "dark": "Escuro",
-    "system": "Padrão do sistema"
+    "system": "Automático"
   },
   "dateFormat": "D [de] MMM [de] YYYY",
   "post": {

@@ -17,7 +17,7 @@
     "toggle": "Changer de thème",
     "light": "Clair",
     "dark": "Sombre",
-    "system": "Thème système"
+    "system": "Auto"
   },
   "dateFormat": "D MMM YYYY",
   "post": {

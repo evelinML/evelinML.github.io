@@ -17,7 +17,7 @@
     "toggle": "Design wechseln",
     "light": "Hell",
     "dark": "Dunkel",
-    "system": "Systemstandard"
+    "system": "Automatisch"
   },
   "dateFormat": "D. MMM YYYY",
   "post": {

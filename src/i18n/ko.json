@@ -17,7 +17,7 @@
     "toggle": "테마 변경",
     "light": "밝은",
     "dark": "어두운",
-    "system": "시스템 기본값"
+    "system": "자동"
   },
   "dateFormat": "YYYY년 M월 D일",
   "post": {
