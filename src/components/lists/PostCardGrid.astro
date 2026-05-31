@@ -6,6 +6,7 @@ interface Props {
   posts: PostEntry[]
   columns?: "responsive" | "three" | "tablet-three"
   balanceLastRow?: boolean
+  priorityFirst?: boolean
   headingLevel?: 2 | 3
   class?: string
   [key: string]: unknown
@@ -15,6 +16,7 @@ const {
   posts,
   columns = "responsive",
   balanceLastRow = false,
+  priorityFirst = false,
   headingLevel = 2,
   class: className = "",
   ...attrs
@@ -41,6 +43,7 @@ const balancedLastCardClass =
       <PostCardCover
         post={post}
         variant="portrait"
+        priority={priorityFirst && index === 0}
         headingLevel={headingLevel}
         class={`${cardClass} ${
           shouldBalanceLastRow && index === posts.length - 1

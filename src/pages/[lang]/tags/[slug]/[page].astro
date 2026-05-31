@@ -89,7 +89,7 @@ const pagination = getPaginationLinks({
       items={categoryLinks}
       label={t(lang, "pages.tags.browseCategories")}
     />
-    <PostCardGrid posts={page.data} headingLevel={3} />
+    <PostCardGrid posts={page.data} headingLevel={3} priorityFirst />
     <Pagination
       prev={page.currentPage === 2 ? `/${lang}/tags/${slug}/` : page.url.prev}
       next={page.url.next}

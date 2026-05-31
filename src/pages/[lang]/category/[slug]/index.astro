@@ -64,7 +64,7 @@ const seoDescription =
     />
     {
       posts.length > 0 ? (
-        <PostCardGrid posts={pagePosts} headingLevel={3} />
+        <PostCardGrid posts={pagePosts} headingLevel={3} priorityFirst />
       ) : (
         <p class="mx-auto max-w-2xl text-center text-sm text-muted-foreground">
           {t(lang, "pages.categories.noPosts")}
