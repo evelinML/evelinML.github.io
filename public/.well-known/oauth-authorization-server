@@ -23,6 +23,8 @@
   "agent_auth": {
     "skill": "https://isitagentready.com/.well-known/agent-skills/auth-md/SKILL.md",
     "register_uri": "https://polyglow.realrip.com/auth.md",
+    "claim_uri": "https://polyglow.realrip.com/api",
+    "revocation_uri": "https://polyglow.realrip.com/auth.md#revocation-uri",
     "identity_types_supported": [
       "anonymous"
     ],
@@ -31,6 +33,7 @@
         "x402"
       ],
       "claim_uri": "https://polyglow.realrip.com/api"
-    }
+    },
+    "events_supported": []
   }
 }

@@ -26,6 +26,22 @@ Registration endpoint: `https://polyglow.realrip.com/auth.md`
 
 register_uri: `https://polyglow.realrip.com/auth.md`
 
+agent_auth metadata:
+
+```json
+{
+  "skill": "https://isitagentready.com/.well-known/agent-skills/auth-md/SKILL.md",
+  "register_uri": "https://polyglow.realrip.com/auth.md",
+  "claim_uri": "https://polyglow.realrip.com/api",
+  "revocation_uri": "https://polyglow.realrip.com/auth.md#revocation-uri",
+  "identity_types_supported": ["anonymous"],
+  "anonymous": {
+    "credential_types_supported": ["x402"]
+  },
+  "events_supported": []
+}
+```
+
 Supported identity types:
 
 - `anonymous`
@@ -41,6 +57,12 @@ Credential claim URI:
 Revocation URI:
 
 - Not applicable. Polyglow does not issue persistent bearer credentials.
+- `revocation_uri`: `https://polyglow.realrip.com/auth.md#revocation-uri`
+
+Registration method:
+
+- `POST /agent/auth`: Not available for this deployment. Polyglow does not create user accounts or issue persistent API keys.
+- Agents register for paid access by completing the x402 challenge returned by `/api` or `/api/v1`.
 
 Protected API probes:
 
