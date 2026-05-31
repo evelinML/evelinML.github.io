@@ -168,6 +168,19 @@ Remote `heroImage` values must include `heroImageWidth` and
 `heroImageHeight`. Remote image hosts are limited to Unsplash and the optional
 `PUBLIC_ASSET_BASE_URL` host.
 
+When replacing the image host, keep Astro image optimization in sync by allowing
+the new HTTPS host in `astro.config.mjs`:
+
+```js
+remotePatterns: [
+  ...(assetHost ? [{ protocol: "https", hostname: assetHost }] : []),
+  { protocol: "https", hostname: "*.unsplash.com" },
+  { protocol: "https", hostname: "*.realrip.com" },
+]
+```
+
+Add or replace entries to match the hosts used by your content images.
+
 ## Configure
 
 Most users only need `src/config/site.ts`:
