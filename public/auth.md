@@ -30,7 +30,7 @@ agent_auth metadata:
 
 ```json
 {
-  "skill": "https://isitagentready.com/.well-known/agent-skills/auth-md/SKILL.md",
+  "skill": "https://polyglow.realrip.com/auth.md",
   "register_uri": "https://polyglow.realrip.com/auth.md",
   "claim_uri": "https://polyglow.realrip.com/api",
   "revocation_uri": "https://polyglow.realrip.com/auth.md#revocation-uri",
