@@ -151,14 +151,19 @@ heroBlurDataURL: "data:image/..."
 
 远程 `heroImage` 需要同时填写 `heroImageWidth` 和 `heroImageHeight`。远程图片域名限制为 Unsplash 和可选的 `PUBLIC_ASSET_BASE_URL` 域名。
 
-更换图床时，需要在 `astro.config.mjs` 中同步放行新的 HTTPS 图片域名：
+更换图床时，需要在 `src/config/site.ts` 中同步放行新的 HTTPS 图片域名：
 
 ```js
-remotePatterns: [
-  ...(assetHost ? [{ protocol: "https", hostname: assetHost }] : []),
-  { protocol: "https", hostname: "*.unsplash.com" },
-  { protocol: "https", hostname: "*.realrip.com" },
-]
+assets: {
+  publicBaseUrl: publicAssetBaseUrl,
+  remotePatterns: [
+    ...(publicAssetHost
+      ? [{ protocol: "https", hostname: publicAssetHost }]
+      : []),
+    { protocol: "https", hostname: "*.unsplash.com" },
+    { protocol: "https", hostname: "*.realrip.com" },
+  ],
+}
 ```
 
 根据内容图片实际使用的域名增删这些条目。

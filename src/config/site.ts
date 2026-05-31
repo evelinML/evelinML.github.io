@@ -1,5 +1,22 @@
 export type HomepageLayout = "cover" | "archive" | "text"
+export type RemoteImagePattern = {
+  protocol: "https"
+  hostname: string
+}
 export type X402ChargeMode = "all" | "bot-only"
+
+function readPublicEnv(name: string): string | undefined {
+  const importMetaEnv = (
+    import.meta as ImportMeta & { env?: Record<string, string | undefined> }
+  ).env
+  const nodeEnv = (
+    globalThis as typeof globalThis & {
+      process?: { env?: Record<string, string | undefined> }
+    }
+  ).process?.env
+
+  return importMetaEnv?.[name] ?? nodeEnv?.[name]
+}
 
 function normalizeGoogleTagManagerId(value: string | undefined): string {
   const id = (value ?? "").trim()
@@ -15,6 +32,16 @@ function normalizePublicString(value: string | undefined): string {
   return (value ?? "").trim()
 }
 
+function hostnameFromUrl(value: string): string | undefined {
+  if (!value) return undefined
+  try {
+    const url = new URL(value)
+    return url.protocol === "https:" ? url.hostname : undefined
+  } catch {
+    return undefined
+  }
+}
+
 function normalizeX402ChargeMode(value: string | undefined): X402ChargeMode {
   const mode = normalizePublicString(value).toLowerCase()
   return mode === "bot-only" || mode === "bots" ? "bot-only" : "all"
@@ -27,34 +54,35 @@ function normalizeBotScoreThreshold(value: string | undefined): number {
 }
 
 const googleTagManagerId = normalizeGoogleTagManagerId(
-  import.meta.env.PUBLIC_GTM_ID
+  readPublicEnv("PUBLIC_GTM_ID")
 )
 const googleAdsenseClientId = normalizeGoogleAdsenseClientId(
-  import.meta.env.PUBLIC_ADSENSE_CLIENT_ID
+  readPublicEnv("PUBLIC_ADSENSE_CLIENT_ID")
 )
 const publicAssetBaseUrl = normalizePublicString(
-  import.meta.env.PUBLIC_ASSET_BASE_URL
+  readPublicEnv("PUBLIC_ASSET_BASE_URL")
 ).replace(/\/$/, "")
-const x402PayTo = normalizePublicString(import.meta.env.PUBLIC_X402_PAY_TO)
+const publicAssetHost = hostnameFromUrl(publicAssetBaseUrl)
+const x402PayTo = normalizePublicString(readPublicEnv("PUBLIC_X402_PAY_TO"))
 const x402Network = normalizePublicString(
-  import.meta.env.PUBLIC_X402_NETWORK ??
+  readPublicEnv("PUBLIC_X402_NETWORK") ??
     "solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1"
 )
 const x402Price = normalizePublicString(
-  import.meta.env.PUBLIC_X402_PRICE ?? "$0.01"
+  readPublicEnv("PUBLIC_X402_PRICE") ?? "$0.01"
 )
 const x402Description = normalizePublicString(
-  import.meta.env.PUBLIC_X402_DESCRIPTION ??
+  readPublicEnv("PUBLIC_X402_DESCRIPTION") ??
     "Voluntary x402 payment support for Polyglow content."
 )
 const x402FacilitatorUrl = normalizePublicString(
-  import.meta.env.PUBLIC_X402_FACILITATOR_URL
+  readPublicEnv("PUBLIC_X402_FACILITATOR_URL")
 )
 const x402ChargeMode = normalizeX402ChargeMode(
-  import.meta.env.PUBLIC_X402_CHARGE_MODE
+  readPublicEnv("PUBLIC_X402_CHARGE_MODE")
 )
 const x402BotScoreThreshold = normalizeBotScoreThreshold(
-  import.meta.env.PUBLIC_X402_BOT_SCORE_THRESHOLD
+  readPublicEnv("PUBLIC_X402_BOT_SCORE_THRESHOLD")
 )
 const socialXUrl = "https://x.com/realriplabs"
 const socialXHandle = `@${
@@ -64,7 +92,7 @@ const socialXHandle = `@${
 export const SITE_CONFIG = {
   name: "Polyglow",
   url: (
-    import.meta.env.PUBLIC_SITE_URL ?? "https://polyglow.realrip.com"
+    readPublicEnv("PUBLIC_SITE_URL") ?? "https://polyglow.realrip.com"
   ).replace(/\/$/, ""),
   description:
     "Pressing forward through the waves of startup, the fog of investing, and the ocean of life.",
@@ -76,23 +104,30 @@ export const SITE_CONFIG = {
   defaultOgImage: "/open-graph.webp",
   assets: {
     publicBaseUrl: publicAssetBaseUrl,
+    remotePatterns: [
+      ...(publicAssetHost
+        ? [{ protocol: "https", hostname: publicAssetHost } as const]
+        : []),
+      { protocol: "https", hostname: "*.unsplash.com" },
+    ] satisfies RemoteImagePattern[],
+    unsplashImageHost: "images.unsplash.com",
   },
   homepage: {
     layout: "cover" as HomepageLayout,
   },
   analytics: {
     googleTagManager: {
-      enabled: import.meta.env.PUBLIC_GTM_ENABLED === "true",
+      enabled: readPublicEnv("PUBLIC_GTM_ENABLED") === "true",
       containerId: googleTagManagerId,
     },
     googleAdsense: {
-      enabled: import.meta.env.PUBLIC_ADSENSE_ENABLED === "true",
+      enabled: readPublicEnv("PUBLIC_ADSENSE_ENABLED") === "true",
       clientId: googleAdsenseClientId,
     },
   },
   payments: {
     x402: {
-      enabled: import.meta.env.PUBLIC_X402_ENABLED === "true",
+      enabled: readPublicEnv("PUBLIC_X402_ENABLED") === "true",
       payTo: x402PayTo,
       network: x402Network,
       price: x402Price,

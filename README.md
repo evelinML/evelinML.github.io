@@ -169,14 +169,19 @@ Remote `heroImage` values must include `heroImageWidth` and
 `PUBLIC_ASSET_BASE_URL` host.
 
 When replacing the image host, keep Astro image optimization in sync by allowing
-the new HTTPS host in `astro.config.mjs`:
+the new HTTPS host in `src/config/site.ts`:
 
 ```js
-remotePatterns: [
-  ...(assetHost ? [{ protocol: "https", hostname: assetHost }] : []),
-  { protocol: "https", hostname: "*.unsplash.com" },
-  { protocol: "https", hostname: "*.realrip.com" },
-]
+assets: {
+  publicBaseUrl: publicAssetBaseUrl,
+  remotePatterns: [
+    ...(publicAssetHost
+      ? [{ protocol: "https", hostname: publicAssetHost }]
+      : []),
+    { protocol: "https", hostname: "*.unsplash.com" },
+    { protocol: "https", hostname: "*.realrip.com" },
+  ],
+}
 ```
 
 Add or replace entries to match the hosts used by your content images.

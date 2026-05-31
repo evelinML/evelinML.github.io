@@ -1,4 +1,5 @@
 import { SITE_CONFIG } from "@/config/site"
+import type { RemoteImagePattern } from "@/config/site"
 
 export type ImageSourceKind = "asset" | "public" | "remote"
 
@@ -6,26 +7,21 @@ function normalizeUrl(value: string | undefined): string {
   return (value ?? "").trim().replace(/\/$/, "")
 }
 
-function hostnameFromUrl(value: string): string | undefined {
-  if (!value) return undefined
-  try {
-    const url = new URL(value)
-    return url.protocol === "https:" ? url.hostname : undefined
-  } catch {
-    return undefined
-  }
-}
-
 const publicAssetBaseUrl = normalizeUrl(SITE_CONFIG.assets.publicBaseUrl)
-const configuredAssetHost = hostnameFromUrl(publicAssetBaseUrl)
 
 export const ASSET_CONFIG = {
   publicAssetBaseUrl,
-  allowedRemoteHosts: [
-    ...(configuredAssetHost ? [configuredAssetHost] : []),
-    "images.unsplash.com",
-  ],
+  allowedRemotePatterns: SITE_CONFIG.assets.remotePatterns,
   objectKeyPattern: "posts/{locale}/{slug}/{hash}.{ext}",
+}
+
+function matchesRemotePattern(url: URL, pattern: RemoteImagePattern): boolean {
+  if (url.protocol.replace(":", "") !== pattern.protocol) return false
+  if (pattern.hostname.startsWith("*.")) {
+    const hostname = pattern.hostname.slice(2)
+    return url.hostname === hostname || url.hostname.endsWith(`.${hostname}`)
+  }
+  return url.hostname === pattern.hostname
 }
 
 export function isAllowedRemoteImage(src: string): boolean {
@@ -33,8 +29,8 @@ export function isAllowedRemoteImage(src: string): boolean {
     const url = new URL(src)
     return (
       url.protocol === "https:" &&
-      ASSET_CONFIG.allowedRemoteHosts.some(
-        (host) => url.hostname === host || url.hostname.endsWith(`.${host}`)
+      ASSET_CONFIG.allowedRemotePatterns.some((pattern) =>
+        matchesRemotePattern(url, pattern)
       )
     )
   } catch {
@@ -63,7 +59,7 @@ export function resolveImageSource(src: string): {
 export function optimizeRemoteImageUrl(src: string, width?: number): string {
   try {
     const url = new URL(src)
-    if (url.hostname !== "images.unsplash.com") return src
+    if (url.hostname !== SITE_CONFIG.assets.unsplashImageHost) return src
 
     url.searchParams.set("auto", "format")
     url.searchParams.set("fit", "crop")
