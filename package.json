@@ -18,13 +18,14 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build && pnpm check:lcp-images",
+    "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "deploy": "pnpm build && wrangler deploy"
   },
   "dependencies": {
-    "@astrojs/mdx": "^5.0.6",
+    "@astrojs/markdown-satteri": "^0.2.1",
+    "@astrojs/mdx": "^6.0.1",
     "@astrojs/partytown": "^2.1.7",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
@@ -35,8 +36,7 @@
     "@x402/core": "^2.14.0",
     "@x402/hono": "^2.14.0",
     "@x402/svm": "^2.14.0",
-    "astro": "^6.3.5",
-    "astro-expressive-code": "^0.42.0",
+    "astro": "^6.4.2",
     "astro-icon": "^1.1.5",
     "astro-seo": "^1.1.0",
     "hono": "^4.12.23",

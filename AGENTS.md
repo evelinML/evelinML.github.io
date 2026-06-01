@@ -17,7 +17,7 @@ addresses.
 - Astro 6 with `output: "static"` and `trailingSlash: "always"`.
 - Tailwind CSS v4 through `@tailwindcss/vite` and CSS-first runtime tokens.
 - MDX content collections backed by `astro:content` glob loaders.
-- `astro-expressive-code` for code blocks.
+- `@astrojs/markdown-satteri` as the Markdown and MDX processor.
 - Custom Pagefind integration in `src/integrations/pagefind.ts`.
 - `astro-icon` with a Lucide allowlist configured in `astro.config.mjs`.
 - `astro-seo` for standard SEO metadata.

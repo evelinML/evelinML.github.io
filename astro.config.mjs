@@ -1,7 +1,7 @@
-import expressiveCode from "astro-expressive-code"
 import mdx from "@astrojs/mdx"
 import partytown from "@astrojs/partytown"
 import sitemap from "@astrojs/sitemap"
+import { satteri } from "@astrojs/markdown-satteri"
 import tailwindcss from "@tailwindcss/vite"
 import { defineConfig, svgoOptimizer } from "astro/config"
 import icon from "astro-icon"
@@ -61,6 +61,7 @@ export default defineConfig({
     },
   },
   markdown: {
+    processor: satteri(),
     shikiConfig: {
       themes: {
         light: "github-light",
@@ -107,10 +108,6 @@ export default defineConfig({
           "x",
         ],
       },
-    }),
-    expressiveCode({
-      themes: ["github-dark", "github-light"],
-      themeCssSelector: (theme) => (theme.type === "dark" ? ".dark" : ""),
     }),
     sitemap({
       filter: (page) => {
