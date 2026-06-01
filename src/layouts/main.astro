@@ -22,8 +22,6 @@ interface Props {
   image?: string
   ogType?: "website" | "article"
   alternates?: Record<string, string>
-  canonicalUrl?: string
-  refreshTo?: string
   noindex?: boolean
   jsonLd?: unknown
   dynamicGlass?: boolean
@@ -37,8 +35,6 @@ const {
   image = SITE_CONFIG.defaultOgImage,
   ogType = "website",
   alternates: explicitAlternates,
-  canonicalUrl: explicitCanonicalUrl,
-  refreshTo,
   noindex = false,
   jsonLd,
   dynamicGlass = false,
@@ -50,8 +46,7 @@ const pageTitle =
   title === SITE_CONFIG.name || title.includes(SITE_CONFIG.name)
     ? title
     : `${title} | ${SITE_CONFIG.name}`
-const canonical = explicitCanonicalUrl ?? canonicalUrl(lang, path)
-const refreshContent = refreshTo ? `0;url=${refreshTo}` : undefined
+const canonical = canonicalUrl(lang, path)
 const absoluteImage = image.startsWith("http")
   ? image
   : `${SITE_CONFIG.url}${image}`
@@ -67,9 +62,7 @@ const baseJsonLd = [
 ]
 const jsonLdItems = jsonLd
   ? baseJsonLd.concat(Array.isArray(jsonLd) ? jsonLd : [jsonLd])
-  : jsonLd === false
-    ? []
-    : baseJsonLd
+  : baseJsonLd
 const languageAlternates = noindex
   ? undefined
   : Object.entries(alternates).map(([hrefLang, href]) => ({
@@ -87,7 +80,6 @@ const alternateOgLocales = LOCALES.filter((locale) => locale !== lang).map(
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="content-language" content={localeMeta.hreflang} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    {refreshContent && <meta http-equiv="refresh" content={refreshContent} />}
     <ClientRouter />
     <SEO
       title={pageTitle}
@@ -134,15 +126,11 @@ const alternateOgLocales = LOCALES.filter((locale) => locale !== lang).map(
         document.documentElement.classList.toggle("dark", resolved === "dark")
       })()
     </script>
-    {
-      jsonLdItems.length > 0 && (
-        <script
-          is:inline
-          type="application/ld+json"
-          set:html={JSON.stringify(jsonLdItems)}
-        />
-      )
-    }
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLdItems)}
+    />
     <script is:inline>
       ;(() => {
         const modelContext = navigator.modelContext

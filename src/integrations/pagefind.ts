@@ -99,12 +99,10 @@ export default function pagefind({
           }
 
           const searchableFiles = getLocaleSearchableFiles(htmlFiles, outDir, locale)
-          let indexedCount = 0
 
           for (const file of searchableFiles) {
             const relativePath = toPosixPath(path.relative(outDir, file))
             const content = await readFile(file, "utf8")
-            if (content.includes("data-polyglow-fallback-redirect")) continue
             const { errors } = await index.addHTMLFile({
               url: `/${relativePath.replace(/index\.html$/, "")}`,
               content,
@@ -116,10 +114,11 @@ export default function pagefind({
               )
               errors.forEach((error) => logger.error(error))
             }
-            indexedCount += 1
           }
 
-          logger.info(`Pagefind indexed ${indexedCount} pages for ${locale}`)
+          logger.info(
+            `Pagefind indexed ${searchableFiles.length} pages for ${locale}`
+          )
 
           const { outputPath: writtenPath, errors: writeErrors } =
             await index.writeFiles({ outputPath })

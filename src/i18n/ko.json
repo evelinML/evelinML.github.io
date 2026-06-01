@@ -176,11 +176,6 @@
     "topArticles": "인기 게시물",
     "latestArticles": "최신 게시물"
   },
-  "fallback": {
-    "title": "영어 글을 여는 중",
-    "message": "이 번역은 아직 제공되지 않습니다. 영어 글을 엽니다.",
-    "continue": "영어 글 열기"
-  },
   "notFound": {
     "title": "페이지를 찾을 수 없습니다",
     "message": "죄송합니다. 요청하신 페이지가 존재하지 않거나 삭제되었습니다.",

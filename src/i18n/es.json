@@ -176,11 +176,6 @@
     "topArticles": "Artículos populares",
     "latestArticles": "Últimos artículos"
   },
-  "fallback": {
-    "title": "Abriendo el artículo en inglés",
-    "message": "Esta traducción aún no está disponible. Se abrirá el artículo en inglés.",
-    "continue": "Abrir artículo en inglés"
-  },
   "notFound": {
     "title": "Página no encontrada",
     "message": "Lo sentimos, la página que buscas no existe o ha sido eliminada.",

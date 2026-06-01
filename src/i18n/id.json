@@ -176,11 +176,6 @@
     "topArticles": "Artikel Populer",
     "latestArticles": "Artikel Terbaru"
   },
-  "fallback": {
-    "title": "Membuka artikel bahasa Inggris",
-    "message": "Terjemahan ini belum tersedia. Artikel bahasa Inggris akan dibuka.",
-    "continue": "Buka artikel bahasa Inggris"
-  },
   "notFound": {
     "title": "Halaman Tidak Ditemukan",
     "message": "Maaf, halaman yang Anda cari tidak ada atau telah dihapus.",
