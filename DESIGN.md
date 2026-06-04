@@ -1,31 +1,31 @@
 ---
 version: "alpha"
 name: "Polyglow"
-description: "A multilingual editorial Astro theme with borderless typography-first surfaces, compact archives, dark mode, Astro view transitions, Pagefind search, and long-form prose."
+description: "A multilingual editorial Astro theme with neutral surfaces, image-led glass cards, compact archives, dark mode, Astro view transitions, Pagefind search, and long-form typography."
 colors:
   background: "#FFFFFF"
-  foreground: "#1D1D1F"
+  foreground: "#18181B"
   card: "#FFFFFF"
-  cardForeground: "#1D1D1F"
+  cardForeground: "#18181B"
   popover: "#FFFFFF"
-  popoverForeground: "#1D1D1F"
-  primary: "#0066CC"
-  primaryForeground: "#FFFFFF"
+  popoverForeground: "#18181B"
+  primary: "#27272A"
+  primaryForeground: "#FAFAFA"
   secondary: "#F4F4F5"
-  secondaryForeground: "#1D1D1F"
+  secondaryForeground: "#27272A"
   muted: "#F4F4F5"
   mutedForeground: "#71717A"
   accent: "#F4F4F5"
-  accentForeground: "#1D1D1F"
+  accentForeground: "#27272A"
   destructive: "#DC2626"
-  border: "#E0E0E0"
+  border: "#E4E4E7"
   input: "#E4E4E7"
-  ring: "#0071E3"
+  ring: "#A1A1AA"
   darkBackground: "#18181B"
   darkForeground: "#FAFAFA"
   darkCard: "#27272A"
   darkPopover: "#27272A"
-  darkPrimary: "#2997FF"
+  darkPrimary: "#E4E4E7"
   darkPrimaryForeground: "#27272A"
   darkSecondary: "#3F3F46"
   darkSecondaryForeground: "#FAFAFA"
@@ -33,62 +33,63 @@ colors:
   darkMutedForeground: "#A1A1AA"
   darkAccent: "#3F3F46"
   darkAccentForeground: "#FAFAFA"
-  darkBorder: "#333333"
+  darkBorder: "#FFFFFF"
   darkInput: "#FFFFFF"
-  darkRing: "#2997FF"
-  actionBlue: "#0066CC"
-  actionBlueFocus: "#0071E3"
-  actionBlueDark: "#2997FF"
+  darkRing: "#71717A"
+  glassOverlay: "#000000"
+  glassOverlayStrong: "#262626"
+  glassBorder: "#FFFFFF"
+  glassSurfaceLight: "#FFFFFF"
 typography:
   sans:
-    fontFamily: "-apple-system, BlinkMacSystemFont, SF Pro Text, Inter, PingFang SC, Segoe UI, ui-sans-serif, system-ui, Noto Sans, Helvetica Neue, Arial, sans-serif"
+    fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: "1.5"
     letterSpacing: "0px"
   heading:
-    fontFamily: "-apple-system, BlinkMacSystemFont, SF Pro Display, Inter, PingFang SC, Segoe UI, ui-sans-serif, system-ui, Noto Sans, Helvetica Neue, Arial, sans-serif"
+    fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
     fontSize: "2rem"
-    fontWeight: 600
+    fontWeight: 700
     lineHeight: "1.15"
-    letterSpacing: "-0.035em"
+    letterSpacing: "0px"
   heroTitle:
-    fontFamily: "-apple-system, BlinkMacSystemFont, SF Pro Display, Inter, PingFang SC, Segoe UI, ui-sans-serif, system-ui, Noto Sans, Helvetica Neue, Arial, sans-serif"
+    fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
     fontSize: "3rem"
-    fontWeight: 600
+    fontWeight: 800
     lineHeight: "1.05"
-    letterSpacing: "-0.035em"
+    letterSpacing: "0px"
   articleBody:
-    fontFamily: "-apple-system, BlinkMacSystemFont, SF Pro Text, Inter, PingFang SC, Segoe UI, ui-sans-serif, system-ui, Noto Sans, Helvetica Neue, Arial, sans-serif"
-    fontSize: "17px"
+    fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
+    fontSize: "1rem"
     fontWeight: 400
-    lineHeight: "1.47"
-    letterSpacing: "-0.022em"
+    lineHeight: "2rem"
+    letterSpacing: "0px"
   nav:
-    fontFamily: "-apple-system, BlinkMacSystemFont, SF Pro Text, Inter, PingFang SC, Segoe UI, ui-sans-serif, system-ui, Noto Sans, Helvetica Neue, Arial, sans-serif"
-    fontSize: "12px"
-    fontWeight: 400
-    lineHeight: "1"
-    letterSpacing: "-0.01em"
-  label:
-    fontFamily: "-apple-system, BlinkMacSystemFont, SF Pro Text, Inter, PingFang SC, Segoe UI, ui-sans-serif, system-ui, Noto Sans, Helvetica Neue, Arial, sans-serif"
-    fontSize: "0.75rem"
-    fontWeight: 400
+    fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
+    fontSize: "0.875rem"
+    fontWeight: 500
     lineHeight: "1.25"
-    letterSpacing: "0.12em"
-  small:
-    fontFamily: "-apple-system, BlinkMacSystemFont, SF Pro Text, Inter, PingFang SC, Segoe UI, ui-sans-serif, system-ui, Noto Sans, Helvetica Neue, Arial, sans-serif"
+    letterSpacing: "0px"
+  label:
+    fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
     fontSize: "0.75rem"
-    fontWeight: 400
+    fontWeight: 600
+    lineHeight: "1.25"
+    letterSpacing: "0.025em"
+  small:
+    fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
+    fontSize: "0.75rem"
+    fontWeight: 500
     lineHeight: "1.5"
     letterSpacing: "0px"
 rounded:
-  sm: "12px"
-  md: "12px"
-  lg: "12px"
-  xl: "12px"
-  card: "12px"
-  hero: "12px"
+  sm: "6px"
+  md: "8px"
+  lg: "10px"
+  xl: "14px"
+  card: "24px"
+  hero: "28px"
   pill: "999px"
 spacing:
   xs: "4px"
@@ -110,22 +111,22 @@ components:
     textColor: "{colors.darkForeground}"
     typography: "{typography.sans}"
   post-card:
-    backgroundColor: "transparent"
+    backgroundColor: "{colors.glassOverlay}"
     textColor: "{colors.primaryForeground}"
     rounded: "{rounded.card}"
-    padding: "0"
-  article-hero:
-    backgroundColor: "transparent"
+    padding: "{spacing.md}"
+  article-hero-panel:
+    backgroundColor: "{colors.glassOverlayStrong}"
     textColor: "{colors.primaryForeground}"
-    rounded: "{rounded.hero}"
-    padding: "0"
+    rounded: "{rounded.xl}"
+    padding: "{spacing.lg}"
   text-card:
-    backgroundColor: "transparent"
+    backgroundColor: "{colors.card}"
     textColor: "{colors.cardForeground}"
     rounded: "{rounded.lg}"
     padding: "{spacing.lg}"
   taxonomy-card:
-    backgroundColor: "transparent"
+    backgroundColor: "{colors.background}"
     textColor: "{colors.foreground}"
     rounded: "{rounded.lg}"
     padding: "{spacing.lg}"
@@ -148,10 +149,15 @@ components:
     rounded: "{rounded.xl}"
     padding: "{spacing.md}"
   meta-pill:
-    backgroundColor: "transparent"
-    textColor: "{colors.mutedForeground}"
+    backgroundColor: "{colors.muted}"
+    textColor: "{colors.foreground}"
     rounded: "{rounded.pill}"
-    padding: "0"
+    padding: "{spacing.sm}"
+  glass-meta-pill:
+    backgroundColor: "{colors.glassOverlayStrong}"
+    textColor: "{colors.primaryForeground}"
+    rounded: "{rounded.pill}"
+    padding: "{spacing.sm}"
   destructive-button:
     backgroundColor: "{colors.destructive}"
     textColor: "{colors.primaryForeground}"
@@ -167,9 +173,9 @@ file records the same system as tokens and design rules so later UI work keeps
 the current theme intact.
 
 The current interface is neutral, content-first, image-led, and compact. It
-uses strong real imagery, typography-led post surfaces, quiet navigation, dense
-archive rows, readable prose, Pagefind search styling, Astro view transitions,
-and a light/dark theme switcher.
+uses strong real imagery, glass panels over post covers and article heroes,
+quiet navigation, dense archive rows, readable prose, Pagefind search styling,
+Astro view transitions, and a light/dark theme switcher.
 
 ## Theme Model
 
@@ -184,41 +190,34 @@ variables by itself.
 
 ## Color System
 
-The palette is a neutral publishing palette with Apple's single interactive
-blue:
+The palette is a neutral publishing palette:
 
 - `background` and `foreground` define the main reading surface.
-- `card`, `popover`, `secondary`, `muted`, and `accent` exist for compatibility
-  with Tailwind utility names, but visible hierarchy should come from spacing,
-  type scale, and font weight before surfaces.
-- `primary`, `actionBlue`, `actionBlueFocus`, and `actionBlueDark` define
-  links, primary actions, Pagefind highlights, and keyboard focus. Do not add a
-  second accent color.
-- `border`, `input`, and `ring` define focus affordances and third-party UI
-  compatibility. Do not use them to reintroduce boxed post lists or cards.
+- `card`, `popover`, `secondary`, `muted`, and `accent` support cards,
+  dropdowns, hover states, chips, search results, and low-emphasis UI.
+- `primary` and `primaryForeground` define high-emphasis actions and inverted
+  text.
+- `border`, `input`, and `ring` define structure and focus affordances.
 - `destructive` is reserved for destructive or error states.
+- `glassOverlay`, `glassOverlayStrong`, `glassBorder`, and
+  `glassSurfaceLight` support post-card panels, article hero panels, dropdowns,
+  and mobile navigation.
 
 Dark mode keeps the same neutral hierarchy with darker surfaces and lighter
 text. Use the dark tokens as design references; runtime switching stays in CSS.
 
 ## Typography
 
-The project prioritizes Apple's system stack first through `-apple-system` and
-`BlinkMacSystemFont`, then SF Pro Text or SF Pro Display, Inter, PingFang SC,
-and broad multilingual system sans fallbacks.
+The project uses a system sans stack throughout. This keeps startup fast,
+supports all configured locales, and avoids external font loading.
 
-Article prose uses fluid `clamp()` sizing from 17px to 18px with 1.47 line
-height and slight negative letter spacing. Chinese, Japanese, and Korean prose
-uses justified text where supported. Arabic pages rely on the document
-`dir="rtl"` value and start-aligned prose. Headings are compact, SF Display-led,
-and 600 weight. Body, navigation, metadata, and labels use 400 unless emphasis
-requires 600. Avoid 500 as a default intermediate weight.
+Article prose uses `1rem` type with `2rem` line height. Chinese, Japanese, and
+Korean prose uses justified text where supported. Arabic pages rely on the
+document `dir="rtl"` value and start-aligned prose. Headings are compact and
+strong. Navigation and metadata stay small, with normal or slight positive
+tracking only where the current UI already uses uppercase labels.
 
-Navigation text follows Apple's compact global-nav rhythm: 12px, 400 weight,
-1.0 line height, and slight negative tracking.
-
-Do not use viewport-scaled font sizes. Negative letter spacing is reserved for
-large editorial headings through the `tightest` token.
+Do not use viewport-scaled font sizes. Do not use negative letter spacing.
 
 ## Layout
 
@@ -234,66 +233,54 @@ The homepage has three code-supported modes in `SITE_CONFIG.homepage.layout`:
 `cover`, `archive`, and `text`. The default implementation currently uses
 `cover`.
 
-## Image And Text Surfaces
+## Cards and Glass
 
-Post cover surfaces use full-bleed imagery with a flat translucent scrim for
-text legibility. Text sits directly on the image layer and relies on weight,
-scale, tracking, and whitespace instead of panels, borders, shadows, or
-decorative gradients.
+Post cover cards use full-bleed imagery with a gradient and a glass content
+panel. The glass panel uses dark translucent backgrounds, subtle white borders,
+blur, and restrained shadow.
 
-Article heroes use the same image-first language. Header, dropdown, and mobile
-navigation use translucent theme backgrounds with 20px-class blur and saturation
-for Apple-style vibrancy, but they do not use decorative borders or shadow.
-When a separator is needed, use a pseudo-element hairline instead of a normal
-border.
+Article heroes use the same image-first language, with a centered glass title
+panel over the image. Header, dropdown, and mobile navigation share the glass
+language, but the fixed header itself uses theme background and border tokens
+for legibility.
 
-Text cards, taxonomy links, and archives stay quiet: transparent backgrounds,
-small radius only where hit targets need it, and physical active states
-(`scale(0.95)`) instead of hover color blocks.
+Text cards and taxonomy cards stay quiet: neutral background, small radius,
+thin border, and modest hover movement.
 
 Do not create cards inside cards. Do not turn full page sections into floating
 cards.
-Do not use decorative gradients for atmosphere.
 
 ## Shapes
 
-The base runtime radius is 12px. Rectangular controls, dropdowns, text cards,
-taxonomy links, code blocks, post image cards, article hero images, and article
-media use the same radius token for a consistent system feel. Semantic circles
-and pills, including avatars, icon-only circular controls, and search inputs,
-keep `999px` or `rounded-full`.
+The base runtime radius is 10px. Small controls use 6px, standard buttons and
+dropdown items use 8px, regular cards use 10px to 14px, image cards use 24px to
+28px, and metadata chips use fully rounded pills.
 
 ## Component Guidance
 
-- **Header and nav:** compact height, theme background, optional hairline
-  separator, grouped category dropdowns, search, language switcher, theme
-  switcher, and mobile nav.
-- **Post cards:** image-first with readable scrim text and real imagery.
-- **Article page:** image hero, compact metadata, centered readable prose,
-  typography-first MDX elements, and related posts.
+- **Header and nav:** compact height, theme background, subtle border, grouped
+  category dropdowns, search, language switcher, theme switcher, and mobile nav.
+- **Post cards:** image-first with readable glass panels and real imagery.
+- **Article page:** image hero, compact metadata, centered readable prose, and
+  related posts.
 - **Archive list:** dense rows, tabular dates, truncated titles where needed,
   and no oversized cards.
 - **Taxonomy pages:** compact link grids, pills, and paginated post grids.
-- **Search:** Pagefind uses a 44px pill input, Action Blue result links, and
-  result hierarchy from typography and spacing rather than boxed cards.
+- **Search:** Pagefind controls follow background, foreground, border, ring,
+  and radius tokens.
 - **Widgets:** GTM, AdSense, and x402 remain visually silent unless enabled by
   configuration.
 - **Icons:** use `src/components/ui/Icon.astro` and the Lucide allowlist in
   `astro.config.mjs`.
-- **Focus states:** mouse focus stays visually quiet; keyboard focus uses an
-  offset Action Blue ring on the active element.
 
-Tailwind Typography is not part of the MDX rendering surface. The prose wrapper
-class is `polyglow-prose`, and it owns the article typography directly.
-
-Treat `polyglow-prose` as a stable CSS API unless the rename is part of a
-deliberate cleanup across components, CSS, and tests.
+The prose wrapper class is `polyglow-prose`. Treat it as a stable CSS API
+unless the rename is part of a deliberate cleanup across components, CSS, and
+tests.
 
 ## Visual Constraints
 
 - Keep UI text inside its container at mobile, tablet, and desktop sizes.
 - Preserve multilingual and RTL layout behavior.
 - Preserve real image-led surfaces for post cards and article heroes.
-- Keep `Polyglow` as the theme brand unless a task explicitly asks for a rename.
 - Avoid decorative background blobs, one-note color palettes, and nested cards.
 - Avoid visible UI text that explains implementation details.

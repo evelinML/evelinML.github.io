@@ -17,7 +17,7 @@ const primaryCategories = getPrimaryCategories()
 <div class="lg:hidden" data-mobile-nav>
   <button
     type="button"
-    class="inline-flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-transform duration-300 ease-apple-spring active:scale-[0.95]"
+    class="inline-flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
     aria-label="Menu"
     aria-haspopup="dialog"
     aria-expanded="false"
@@ -32,20 +32,22 @@ const primaryCategories = getPrimaryCategories()
   >
   </div>
   <aside
-    class="mobile-nav-panel fixed top-0 right-0 z-50 flex h-dvh w-full max-w-sm translate-x-full flex-col transition-transform duration-200 ease-apple-spring"
+    class="mobile-nav-glass fixed top-0 right-0 z-50 flex h-dvh w-full max-w-sm translate-x-full flex-col border-l border-white/10 transition-transform duration-200"
     role="dialog"
     aria-modal="true"
     aria-labelledby="mobile-nav-title"
     hidden
     data-mobile-nav-panel
   >
-    <div class="flex items-center justify-between gap-4 p-4">
+    <div
+      class="flex items-center justify-between gap-4 border-b border-white/10 p-4"
+    >
       <p id="mobile-nav-title" class="text-base font-semibold text-foreground">
         {SITE_CONFIG.name}
       </p>
       <button
         type="button"
-        class="inline-flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-transform duration-300 ease-apple-spring active:scale-[0.95]"
+        class="inline-flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
         aria-label="Close menu"
         data-mobile-nav-close
       >
@@ -59,7 +61,7 @@ const primaryCategories = getPrimaryCategories()
       {
         primaryCategories.map((category) => (
           <details class="group rounded-lg">
-            <summary class="flex min-h-10 cursor-pointer list-none items-center justify-between rounded-lg px-3 text-sm font-normal text-foreground transition-opacity duration-300 hover:opacity-70">
+            <summary class="flex min-h-10 cursor-pointer list-none items-center justify-between rounded-lg px-3 text-sm font-medium text-foreground hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
               <span>{category.labelByLocale[lang]}</span>
               <Icon
                 name="chevron-down"
@@ -69,7 +71,7 @@ const primaryCategories = getPrimaryCategories()
             <div class="mt-1 flex flex-col gap-1 ps-3">
               {getTagsForCategory(category.slug).map((tag) => (
                 <a
-                  class="rounded-md px-3 py-2 text-sm text-muted-foreground transition-opacity duration-300 hover:opacity-70"
+                  class="rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
                   href={localePath(lang, `/tags/${tag.slug}/`)}
                 >
                   {tag.labelByLocale[lang]}
@@ -80,13 +82,13 @@ const primaryCategories = getPrimaryCategories()
         ))
       }
       <a
-        class="rounded-lg px-3 py-2 text-sm font-normal transition-opacity duration-300 hover:opacity-70"
+        class="rounded-lg px-3 py-2 text-sm font-medium hover:bg-muted"
         href={localePath(lang, "/posts/")}
       >
         {t(lang, "pages.posts.title")}
       </a>
       <a
-        class="rounded-lg px-3 py-2 text-sm font-normal transition-opacity duration-300 hover:opacity-70"
+        class="rounded-lg px-3 py-2 text-sm font-medium hover:bg-muted"
         href={localePath(lang, "/search/")}
       >
         {t(lang, "search.title")}

@@ -102,14 +102,16 @@ const jsonLd = articleJsonLd({
   ogType="article"
   jsonLd={jsonLd}
   alternates={alternates}
+  dynamicGlass
 >
   <article aria-labelledby="article-title">
     <div
       class="relative mx-auto mt-10 w-[calc(100%-2rem)] max-w-3xl sm:w-[calc(100%-2.5rem)] md:w-[calc(100%-3rem)]"
     >
       <div
-        class="post-card relative flex aspect-[3/4] flex-col overflow-hidden rounded-lg md:aspect-[16/9]"
+        class="post-card relative flex aspect-[3/4] flex-col overflow-hidden rounded-2xl md:aspect-[16/9] md:rounded-3xl"
         data-article-hero
+        data-glass-card
       >
         <OptimizedPicture
           src={post.data.heroImage}
@@ -122,16 +124,17 @@ const jsonLd = articleJsonLd({
           class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-out"
         />
         <div
-          class="absolute inset-0 bg-black/35"
+          class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"
         >
         </div>
         <div
-          class="post-card__content absolute inset-x-0 bottom-0 z-10 flex flex-col justify-end p-5 text-white sm:p-6"
+          class="post-card__content absolute z-10 right-1.5 bottom-1.5 left-1.5 flex flex-col justify-end rounded-2xl p-4 text-white sm:p-5"
+          data-glass-target
         >
           <div class="flex w-full flex-col gap-4 text-center">
             <h1
               id="article-title"
-              class="line-clamp-3 text-[clamp(1.25rem,3.5vw,2rem)] leading-tight font-semibold tracking-tight"
+              class="line-clamp-3 text-xl font-semibold leading-tight tracking-tight"
               data-pagefind-meta="title"
             >
               {post.data.title}
@@ -186,7 +189,7 @@ const jsonLd = articleJsonLd({
             >
               <a
                 href={`/${post.data.locale}/author/`}
-                class="flex min-w-0 items-center gap-3 text-sm font-normal text-muted-foreground transition-opacity hover:opacity-75"
+                class="flex min-w-0 items-center gap-3 text-sm font-medium text-muted-foreground transition-opacity hover:opacity-75"
               >
                 <OptimizedPicture
                   src={authorImage}
@@ -194,13 +197,13 @@ const jsonLd = articleJsonLd({
                   variant="logo"
                   width={32}
                   height={32}
-                  class="size-8 rounded-full object-cover"
+                  class="size-8 rounded-full object-cover ring-1 ring-border"
                 />
                 <span class="truncate">{author?.data.name ?? SITE_CONFIG.name}</span>
               </a>
               <a
                 href={`/${post.data.locale}/category/${categorySlug}/`}
-                class="inline-flex min-h-7 shrink-0 items-center justify-center text-[12px] font-normal tracking-widest-caps text-zinc-500 uppercase transition-opacity duration-300 hover:opacity-70"
+                class="inline-flex min-h-7 shrink-0 items-center justify-center rounded-full bg-muted px-3 py-1 text-xs font-semibold text-foreground transition-colors hover:bg-accent"
               >
                 {categoryLabel}
               </a>

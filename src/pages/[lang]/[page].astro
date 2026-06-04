@@ -45,7 +45,7 @@ const pagination = getPaginationLinks({
 })
 ---
 
-<Layout lang={lang} path={`/${page.currentPage}/`} title={title}>
+<Layout lang={lang} path={`/${page.currentPage}/`} title={title} dynamicGlass>
   <PageSection class="py-10 sm:px-6">
     <h1 class="sr-only">{t(lang, "pages.posts.title")} - {title}</h1>
     <PostCardGrid posts={page.data} priorityFirst />

@@ -9,6 +9,7 @@ import { t } from "@/utils/translations"
 import { webPageJsonLd, webSiteJsonLd } from "@/utils/structured-data"
 import Header from "@/components/ui/Header.astro"
 import Footer from "@/components/ui/Footer.astro"
+import DynamicGlass from "@/components/features/DynamicGlass.astro"
 import GTMHead from "@/components/widgets/GTMHead.astro"
 import GTMBody from "@/components/widgets/GTMBody.astro"
 import Adsense from "@/components/widgets/Adsense.astro"
@@ -23,6 +24,7 @@ interface Props {
   alternates?: Record<string, string>
   noindex?: boolean
   jsonLd?: unknown
+  dynamicGlass?: boolean
 }
 
 const {
@@ -35,6 +37,7 @@ const {
   alternates: explicitAlternates,
   noindex = false,
   jsonLd,
+  dynamicGlass = false,
 } = Astro.props
 const alternates = explicitAlternates ?? buildAlternates(path)
 const localeMeta = getLocaleMeta(lang)
@@ -76,8 +79,6 @@ const alternateOgLocales = LOCALES.filter((locale) => locale !== lang).map(
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="content-language" content={localeMeta.hreflang} />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <ClientRouter />
     <SEO
@@ -183,5 +184,6 @@ const alternateOgLocales = LOCALES.filter((locale) => locale !== lang).map(
       <slot />
     </main>
     <Footer lang={lang} />
+    {dynamicGlass && <DynamicGlass />}
   </body>
 </html>

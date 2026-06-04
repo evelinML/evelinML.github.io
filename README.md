@@ -39,7 +39,7 @@ account, wallet, or Cloudflare credentials.
 - 💸 Optional x402 support through static metadata and a Cloudflare Worker gateway.
 - 🤖 Agent-native publishing surface with `llms.txt`, `llms-full.txt`,
   `openapi.json`, `auth.md`, robots.txt, and sitemap.
-- 📊 Author Writing Activity heatmap and image-led typography-first UI.
+- 📊 Author Writing Activity heatmap and image-led dynamic glass UI.
 
 ## Verification Examples
 

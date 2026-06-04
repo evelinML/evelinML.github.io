@@ -29,20 +29,20 @@ const dateLabel = new Intl.DateTimeFormat(post.data.locale, {
   year: "numeric",
 }).format(post.data.pubDate)
 const portraitCardShape =
-  "aspect-[3/4] rounded-lg sm:min-h-[24rem]"
+  "aspect-[3/4] rounded-3xl sm:min-h-[24rem]"
 const cardShape = {
-  lead: "aspect-[3/4] rounded-lg sm:aspect-[16/9] sm:min-h-[27rem]",
+  lead: "aspect-[3/4] rounded-[1.75rem] sm:aspect-[16/9] sm:min-h-[27rem]",
   wide: `${portraitCardShape} xl:aspect-[16/10] xl:min-h-[20rem]`,
   portrait: portraitCardShape,
 }[variant]
 const contentShape =
   variant === "lead"
-    ? "inset-x-0 bottom-0 p-5 sm:p-8"
-    : "inset-x-0 bottom-0 p-4 sm:p-5"
+    ? "left-1.5 bottom-1.5 max-w-[34rem] rounded-[1.35rem] p-5 sm:p-8"
+    : "inset-x-1.5 bottom-1.5 rounded-2xl p-4 sm:p-5"
 const titleClass =
   variant === "lead"
-    ? "line-clamp-2 text-[clamp(2rem,5vw,3rem)] leading-tight font-semibold tracking-tight"
-    : "line-clamp-3 text-[clamp(1.25rem,2.5vw,1.5rem)] leading-tight font-semibold tracking-tight"
+    ? "line-clamp-2 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl"
+    : "line-clamp-3 text-xl font-semibold leading-tight tracking-tight"
 const imageWidths = {
   lead: [640, 768, 960, 1200],
   wide: [420, 640, 720, 960, 1200],
@@ -57,7 +57,8 @@ const TitleTag = headingLevel === 3 ? "h3" : "h2"
 ---
 
 <article
-  class={`post-card group relative w-full min-w-0 max-w-full overflow-hidden transition-transform duration-300 ease-apple-spring active:scale-[0.95] ${cardShape} ${className}`}
+  class={`post-card group relative w-full min-w-0 max-w-full overflow-hidden ${cardShape} ${className}`}
+  data-glass-card
 >
   <a
     href={postUrl(post)}
@@ -74,11 +75,12 @@ const TitleTag = headingLevel === 3 ? "h3" : "h2"
     class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-out"
   />
   <div
-    class="absolute inset-0 bg-black/35"
+    class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"
   >
   </div>
   <div
     class={`post-card__content absolute z-10 text-center text-white ${contentShape}`}
+    data-glass-target
   >
     <div
       class="mb-3 flex w-full items-center justify-center gap-3 text-xs text-white/75"

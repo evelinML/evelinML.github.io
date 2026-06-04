@@ -13,7 +13,7 @@ interface Props {
 
 const { prev, next, pages = [], currentPage, totalPages } = Astro.props
 const itemClass =
-  "inline-flex size-10 items-center justify-center rounded-lg bg-transparent text-sm font-normal text-foreground transition-transform duration-300 ease-apple-spring active:scale-[0.95] disabled:pointer-events-none disabled:opacity-40"
+  "inline-flex size-10 items-center justify-center rounded-lg border border-border bg-background/80 text-sm font-medium text-foreground shadow-sm backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-accent disabled:pointer-events-none disabled:opacity-40 dark:bg-white/5"
 const disabledClass = `${itemClass} opacity-35`
 const pageItems =
   pages.length > 0
@@ -45,12 +45,12 @@ const pageItems =
   {
     pageItems.map((item) =>
       item.type === "ellipsis" ? (
-        <span class="inline-flex size-10 items-center justify-center text-sm font-normal text-muted-foreground">
+        <span class="inline-flex size-10 items-center justify-center text-sm font-medium text-muted-foreground">
           ...
         </span>
       ) : item.current ? (
         <span
-          class="inline-flex size-10 items-center justify-center rounded-lg bg-zinc-900 text-sm font-semibold text-zinc-50 dark:bg-zinc-100 dark:text-zinc-900"
+          class="inline-flex size-10 items-center justify-center rounded-lg bg-foreground text-sm font-semibold text-background shadow-sm"
           aria-current="page"
           aria-label={totalPages
             ? `Page ${item.page} of ${totalPages}`
