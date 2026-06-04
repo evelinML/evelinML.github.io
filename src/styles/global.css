@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
 @import "tailwindcss";
 
 @plugin "@tailwindcss/typography";
@@ -7,9 +9,10 @@
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans:
-    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Noto Sans", "Helvetica Neue", Arial, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    "Inter", "SF Pro Text", "PingFang SC", ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+    "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", sans-serif;
   --font-mono:
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
@@ -39,6 +42,9 @@
   --animate-scale-down: scale-down 0.3s ease forwards;
   --animate-fade-in-up: fade-in-up 0.5s ease forwards;
   --animate-fade-in: fade-in 0.3s ease forwards;
+  --tracking-tightest: -0.035em;
+  --tracking-widest-caps: 0.12em;
+  --ease-apple-spring: cubic-bezier(0.25, 1, 0.5, 1);
   --glass-blur: 16px;
   --glass-blur-sm: 8px;
   --glass-blur-lg: 24px;
@@ -66,8 +72,6 @@
   --radius: 0.625rem;
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-border-light: rgba(255, 255, 255, 0.15);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  --glass-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
   --glass-content-bg: rgba(0, 0, 0, 0.4);
   --glass-content-bg-hover: rgba(0, 0, 0, 0.5);
 }
@@ -93,8 +97,6 @@
   --ring: oklch(0.556 0 0);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-border-light: rgba(255, 255, 255, 0.12);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  --glass-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.4);
   --glass-content-bg: rgba(0, 0, 0, 0.5);
   --glass-content-bg-hover: rgba(0, 0, 0, 0.6);
 }
@@ -113,7 +115,7 @@
   }
 
   body {
-    @apply flex min-h-dvh flex-col bg-background text-foreground;
+    @apply flex min-h-dvh flex-col bg-white text-zinc-800 antialiased tracking-normal dark:bg-black dark:text-zinc-200 leading-relaxed transition-colors duration-300;
   }
 
   button:not(:disabled),
@@ -162,29 +164,18 @@
 }
 
 .glass-card {
-  background: var(--glass-content-bg);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
-  @apply rounded-lg transition-all duration-300;
-}
-
-.glass-card:hover {
-  background: var(--glass-content-bg-hover);
-  box-shadow: var(--glass-shadow-hover);
+  @apply rounded-lg transition-all duration-300 ease-apple-spring;
 }
 
 .header-glass {
-  background: var(--background);
-  border-color: var(--border);
+  @apply border-b-0 bg-white/70 backdrop-blur-md dark:bg-black/70;
 }
 
 .nav-dropdown,
 .mobile-nav-glass {
   background: var(--glass-content-bg);
-  border-color: var(--glass-border);
-  box-shadow: var(--glass-shadow);
   backdrop-filter: blur(var(--glass-blur-lg));
   -webkit-backdrop-filter: blur(var(--glass-blur-lg));
 }
@@ -227,30 +218,15 @@
 }
 
 .post-card__content {
-  background: var(--glass-content-bg);
-  border: 1px solid var(--glass-border-light);
-  box-shadow: var(--glass-shadow);
-  backdrop-filter: blur(var(--glass-blur-lg));
-  -webkit-backdrop-filter: blur(var(--glass-blur-lg));
-  @apply transition-all duration-300;
-}
-
-.post-card:hover .post-card__content {
-  background: var(--glass-content-bg-hover);
-  box-shadow: var(--glass-shadow-hover);
-}
-
-.article-hero__content.post-card__content {
-  background-color: rgba(38, 38, 38, 0.68);
-  border-color: rgba(255, 255, 255, 0.18);
+  @apply transition-all duration-300 ease-apple-spring;
 }
 
 .card-meta-pill {
-  @apply inline-flex items-center rounded-full bg-white/25 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md;
+  @apply inline-flex items-center text-[12px] font-medium tracking-widest-caps text-zinc-200 uppercase;
 }
 
 .polyglow-prose {
-  @apply max-w-3xl text-foreground;
+  @apply max-w-3xl text-[17px] text-zinc-800 dark:text-zinc-200;
 }
 
 .polyglow-prose.article-prose {
@@ -340,8 +316,12 @@ html[dir="rtl"] .polyglow-prose :where(p, li) {
   @apply w-full;
 }
 
+.polyglow-prose :where(h1) {
+  @apply mt-12 mb-6 border-none text-4xl leading-tight font-semibold tracking-tightest text-zinc-900 dark:text-zinc-50;
+}
+
 .polyglow-prose :where(h2) {
-  @apply mt-12 mb-4 text-2xl leading-tight font-semibold text-foreground;
+  @apply mt-10 mb-4 border-none text-2xl leading-tight font-semibold tracking-tight text-zinc-900 dark:text-zinc-50;
 }
 
 .polyglow-prose :where(h3) {
@@ -373,7 +353,7 @@ html[dir="rtl"] .polyglow-prose :where(p, li) {
 }
 
 .polyglow-prose :where(a) {
-  @apply font-medium text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground;
+  @apply font-medium text-foreground underline decoration-zinc-300 underline-offset-4 transition-colors hover:decoration-zinc-900 dark:hover:decoration-zinc-50;
 }
 
 .polyglow-prose :where(:not(pre) > code) {
@@ -381,7 +361,7 @@ html[dir="rtl"] .polyglow-prose :where(p, li) {
 }
 
 .polyglow-prose :where(pre) {
-  @apply my-8 overflow-x-auto rounded-2xl border border-border bg-muted/70 p-4 shadow-sm;
+  @apply my-8 overflow-x-auto rounded-2xl bg-muted/70 p-4;
 }
 
 .polyglow-prose :where(pre code) {
@@ -389,11 +369,11 @@ html[dir="rtl"] .polyglow-prose :where(p, li) {
 }
 
 .polyglow-prose :where(blockquote) {
-  @apply my-8 rounded-2xl border-s-4 border-border bg-muted/50 px-5 py-3 text-foreground/80;
+  @apply my-8 rounded-2xl bg-muted/50 px-5 py-3 text-foreground/80;
 }
 
 .polyglow-prose :where(hr) {
-  @apply my-10 border-border;
+  @apply my-10 h-px border-0 bg-zinc-100 dark:bg-zinc-900;
 }
 
 .polyglow-prose :where(table) {
@@ -401,15 +381,15 @@ html[dir="rtl"] .polyglow-prose :where(p, li) {
 }
 
 .polyglow-prose :where(th) {
-  @apply border-b border-border px-3 py-2 text-start font-semibold text-foreground;
+  @apply px-3 py-2 text-start font-semibold text-foreground;
 }
 
 .polyglow-prose :where(td) {
-  @apply border-b border-border px-3 py-2 text-foreground/80;
+  @apply px-3 py-2 text-foreground/80;
 }
 
 .polyglow-prose :where(img) {
-  @apply my-8 rounded-2xl shadow-sm ring-1 ring-border;
+  @apply my-8 rounded-2xl;
 }
 
 .archive-list {
@@ -438,7 +418,7 @@ html[dir="rtl"] .polyglow-prose :where(p, li) {
 }
 
 .taxonomy-card {
-  @apply block rounded-lg border border-border bg-background/70 p-5 shadow-sm backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent/60 hover:shadow-md dark:bg-white/5;
+  @apply block rounded-lg bg-transparent p-5 transition-all duration-200 ease-apple-spring hover:-translate-y-0.5 hover:bg-zinc-50 dark:hover:bg-zinc-900/40;
 }
 
 .taxonomy-link-grid {
@@ -446,7 +426,7 @@ html[dir="rtl"] .polyglow-prose :where(p, li) {
 }
 
 .taxonomy-link {
-  @apply flex min-h-24 items-start justify-between gap-4 rounded-lg border border-border bg-background/70 p-4 text-sm text-foreground shadow-sm transition hover:-translate-y-0.5 hover:bg-accent/70 hover:shadow-md dark:bg-white/[0.03];
+  @apply flex min-h-24 items-start justify-between gap-4 rounded-lg bg-transparent p-4 text-sm text-foreground transition hover:-translate-y-0.5 hover:bg-zinc-50 dark:hover:bg-zinc-900/40;
 }
 
 .taxonomy-link__body {
@@ -462,11 +442,11 @@ html[dir="rtl"] .polyglow-prose :where(p, li) {
 }
 
 .taxonomy-link__count {
-  @apply inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-medium text-muted-foreground;
+  @apply inline-flex shrink-0 items-center justify-center text-[12px] font-medium tracking-widest-caps text-zinc-500 uppercase;
 }
 
 .taxonomy-pill {
-  @apply inline-flex min-h-9 items-center rounded-full border border-border bg-background/70 px-4 py-1.5 text-sm font-medium text-foreground shadow-sm transition hover:-translate-y-0.5 hover:bg-accent dark:bg-white/5;
+  @apply inline-flex min-h-9 items-center px-1 py-1.5 text-[12px] font-medium tracking-widest-caps text-zinc-500 uppercase transition hover:-translate-y-0.5 hover:text-zinc-900 dark:hover:text-zinc-50;
 }
 
 .pagefind-ui {
@@ -484,10 +464,6 @@ html[dir="rtl"] .polyglow-prose :where(p, li) {
   margin-bottom: 1.25rem;
 }
 
-.author-card {
-  box-shadow: 0 30px 90px -70px hsl(var(--foreground) / 0.7);
-}
-
 .search-shell {
   @apply pt-1;
 }
@@ -502,13 +478,13 @@ html[dir="rtl"] .polyglow-prose :where(p, li) {
 }
 
 .pagefind-ui__search-input {
-  border: 1px solid var(--border) !important;
+  border: 0 !important;
   background: color-mix(
     in oklab,
     var(--background) 92%,
     transparent
   ) !important;
-  box-shadow: 0 18px 48px -36px hsl(var(--foreground) / 0.45) !important;
+  box-shadow: none !important;
   backdrop-filter: blur(var(--glass-blur)) !important;
   -webkit-backdrop-filter: blur(var(--glass-blur)) !important;
   min-height: 3.125rem !important;
@@ -522,7 +498,7 @@ html[dir="rtl"] .polyglow-prose :where(p, li) {
 }
 
 .pagefind-ui__result {
-  border-top: 1px solid var(--border) !important;
+  border-top: 0 !important;
   padding: 1.25rem 0 !important;
 }
 
@@ -542,7 +518,7 @@ html[dir="rtl"] .polyglow-prose :where(p, li) {
 }
 
 .not-found-link {
-  @apply inline-flex min-h-9 items-center gap-2 rounded-lg border border-border bg-background px-3.5 text-sm font-medium text-foreground transition hover:-translate-y-0.5 hover:bg-accent/70 dark:bg-white/[0.03];
+  @apply inline-flex min-h-9 items-center gap-2 rounded-lg bg-transparent px-3.5 text-sm font-medium text-foreground transition hover:-translate-y-0.5 hover:bg-zinc-50 dark:hover:bg-zinc-900/40;
 }
 
 .not-found-search {
@@ -550,7 +526,7 @@ html[dir="rtl"] .polyglow-prose :where(p, li) {
 }
 
 .not-found-search__input {
-  @apply min-h-12 min-w-0 flex-1 rounded-xl border border-border bg-background px-4 text-base text-foreground shadow-sm transition outline-none focus:border-ring focus:ring-2 focus:ring-ring/30;
+  @apply min-h-12 min-w-0 flex-1 rounded-xl bg-zinc-50 px-4 text-base text-foreground transition outline-none focus:outline-2 focus:outline-ring/40 dark:bg-zinc-900/60;
 }
 
 .not-found-search__button {
@@ -558,7 +534,7 @@ html[dir="rtl"] .polyglow-prose :where(p, li) {
 }
 
 .category-tag {
-  @apply inline-flex items-center rounded-full bg-neutral-900 px-3 py-1 text-xs font-semibold tracking-wide text-white uppercase transition-opacity duration-150 hover:opacity-90 dark:bg-neutral-100 dark:text-neutral-950;
+  @apply inline-flex items-center text-[12px] font-medium tracking-widest-caps text-zinc-500 uppercase transition-colors duration-150 hover:text-zinc-900 dark:hover:text-zinc-50;
 }
 
 .blur-placeholder {
