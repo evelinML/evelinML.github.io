@@ -184,6 +184,14 @@
   border-color: transparent;
 }
 
+.site-logo {
+  transition: filter 150ms ease;
+}
+
+.dark .site-logo {
+  filter: invert(1) brightness(1.08);
+}
+
 .nav-dropdown,
 .mobile-nav-glass {
   background: var(--glass-content-bg);

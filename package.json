@@ -22,6 +22,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "check:seo": "node scripts/check-article-seo.mjs",
+    "check:logo-theme": "node scripts/check-logo-theme.mjs",
     "deploy": "pnpm build && wrangler deploy"
   },
   "dependencies": {
