@@ -19,7 +19,15 @@ const { lang } = Astro.props
     aria-expanded="false"
     data-dropdown-menu-trigger
   >
-    <Icon name="sun" class="size-4" dataIcon="inline-start" />
+    <span data-theme-trigger-icon="light">
+      <Icon name="sun" class="size-4" dataIcon="inline-start" />
+    </span>
+    <span class="hidden" data-theme-trigger-icon="dark">
+      <Icon name="moon" class="size-4" dataIcon="inline-start" />
+    </span>
+    <span class="hidden" data-theme-trigger-icon="system">
+      <Icon name="monitor" class="size-4" dataIcon="inline-start" />
+    </span>
   </button>
   <div
     class="nav-dropdown absolute top-full right-0 z-50 mt-2 grid w-44 gap-1 rounded-xl p-2 shadow-xl"
@@ -76,6 +84,13 @@ const { lang } = Astro.props
       })
     }
 
+    const updateThemeTriggerIcon = (theme) => {
+      document.querySelectorAll("[data-theme-trigger-icon]").forEach((icon) => {
+        if (!(icon instanceof HTMLElement)) return
+        icon.classList.toggle("hidden", icon.dataset.themeTriggerIcon !== theme)
+      })
+    }
+
     const applyTheme = (theme = getThemePreference()) => {
       if (theme === "system") {
         localStorage.removeItem("theme")
@@ -90,6 +105,7 @@ const { lang } = Astro.props
           : theme
       document.documentElement.classList.toggle("dark", resolved === "dark")
       updateThemeOptions(theme)
+      updateThemeTriggerIcon(theme)
     }
 
     applyTheme()
