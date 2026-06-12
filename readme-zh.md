@@ -275,6 +275,16 @@ Polyglow 发布静态 API 发现文件，供代理自动读取：
 
 `DESIGN.md` 记录当前视觉令牌和 UI 规则。实际运行时主题在 `src/styles/global.css` 中实现。
 
+## 开发流程
+
+Polyglow 的开发只使用仓库文档、GitHub Issues 和 GitHub Projects。飞书、Lark、Meegle、飞书项目和飞书知识库不再作为 Polyglow 的开发工具。
+
+- `AGENTS.md`、`DESIGN.md`、本 README、`README.md` 和 `docs/` 是项目文档来源。
+- GitHub Issues 是 bug、功能和任务的唯一事实来源。
+- GitHub Projects 用于状态、优先级、顺序和交付跟踪。
+- 非简单修改采用 Spec-Driven Development：在编码前或编码同时写清 issue、验收标准、实现说明和验证命令。
+- 有意义的 commit、pull request 或最终交接说明引用对应 issue。
+
 ## 搜索和 SEO
 
 Pagefind 由 `src/integrations/pagefind.ts` 在构建阶段生成。当前索引范围包含各语言 about 页面和文章详情页。每个支持语言都会生成独立的 `/pagefind/<locale>/` 搜索包，便于多语言站点只更新对应语言的搜索 fragment。

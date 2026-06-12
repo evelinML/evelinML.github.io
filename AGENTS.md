@@ -39,6 +39,29 @@ addresses.
 
 Use pnpm for Node.js work. Do not add npm, yarn, or bun lockfiles.
 
+## Development Workflow
+
+- Use Polyglow repository documents, GitHub Issues, and GitHub Projects as the
+  only development planning and tracking tools.
+- Do not use Feishu, Lark, Meegle, Feishu Project, Feishu Wiki, or other
+  external project-management systems for Polyglow development unless a future
+  user request explicitly reintroduces them.
+- Treat `AGENTS.md`, `DESIGN.md`, `README.md`, `readme-zh.md`, and files under
+  `docs/` as the project documentation source.
+- Before coding, read `AGENTS.md` and `DESIGN.md`. If either file is missing,
+  add a minimal version before continuing.
+- Use Spec-Driven Development for non-trivial changes: define the issue,
+  acceptance criteria, implementation notes, and verification commands before
+  or alongside the code change.
+- Use GitHub Issues as the source of truth for tasks, bugs, and feature
+  requests. Each meaningful code change should reference or create an issue.
+- Use GitHub Projects for status, priority, sequencing, and delivery tracking.
+- Keep issue comments and pull request descriptions concise, with the changed
+  behavior, deployment impact, and verification commands.
+- If GitHub access is unavailable, continue local work when safe and record the
+  exact GitHub blockage in the final handoff. Do not replace GitHub tracking
+  with Feishu or other project tools.
+
 ## Repository Map
 
 - `astro.config.mjs`: Astro static output, i18n, image domains, integrations,

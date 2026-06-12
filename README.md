@@ -306,6 +306,22 @@ the normal HTML response.
 `DESIGN.md` records the current visual tokens and UI rules. The live runtime
 theme is implemented in `src/styles/global.css`.
 
+## Development Workflow
+
+Polyglow development uses repository documentation, GitHub Issues, and GitHub
+Projects. Feishu, Lark, Meegle, Feishu Project, and Feishu Wiki are not part of
+the Polyglow development workflow.
+
+- Use `AGENTS.md`, `DESIGN.md`, this README, `readme-zh.md`, and `docs/` as the
+  project documentation source.
+- Use GitHub Issues as the source of truth for bugs, features, and tasks.
+- Use GitHub Projects for status, priority, sequencing, and delivery tracking.
+- Use Spec-Driven Development for non-trivial changes: capture the issue,
+  acceptance criteria, implementation notes, and verification commands before or
+  alongside the code.
+- Reference the relevant issue in meaningful commits, pull requests, or final
+  handoffs.
+
 ## Search and SEO
 
 Pagefind is generated at build time by `src/integrations/pagefind.ts`. The
