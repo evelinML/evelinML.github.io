@@ -92,7 +92,7 @@ const socialXHandle = `@${
 export const SITE_CONFIG = {
   name: "Polyglow",
   url: (
-    readPublicEnv("PUBLIC_SITE_URL") ?? "https://evelinMl.github.io"
+    readPublicEnv("PUBLIC_SITE_URL") ?? "https://evelinML.github.io"
   ).replace(/\/$/, ""),
   description:
     "Pressing forward through the waves of startup, the fog of investing, and the ocean of life.",
